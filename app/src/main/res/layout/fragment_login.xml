@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    tools:context=".presenter.auth.register.RegisterFragment">
+    tools:context=".presenter.auth.login.LoginFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:fontFamily="@font/urbanist_700"
-            android:text="@string/title_register_fragment"
+            android:text="@string/title_login_fragment"
             android:textColor="#212121"
             android:textSize="32sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -53,7 +53,7 @@
             android:drawablePadding="16dp"
             style="@style/ThemeEditText"
             android:inputType="textEmailAddress"
-            android:hint="@string/text_hint_edit_email_register_fragment"
+            android:hint="@string/text_hint_edit_email_login_fragment"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView2"
@@ -78,7 +78,7 @@
                 style="@style/ThemeEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/text_hint_edit_password_register_fragment"
+                android:hint="@string/text_hint_edit_password_login_fragment"
                 android:drawableStart="@drawable/ic_password"
                 android:drawablePadding="16dp"
                 android:inputType="textPassword"
@@ -86,29 +86,55 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <CheckBox
+            android:id="@+id/cbRemember"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:theme="@style/Theme.CheckBox"
+            android:layout_marginTop="16dp"
+            android:minHeight="0dp"
+            android:text="Remember me"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edt_senha_layout"
+            tools:ignore="HardcodedText" />
+
         <Button
             android:id="@+id/btnLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginHorizontal="24dp"
-            android:text="@string/text_button_sign_up_register_fragment"
+            android:text="@string/text_button_sign_in_login_fragment"
             android:theme="@style/ThemeButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edt_senha_layout" />
+            app:layout_constraintTop_toBottomOf="@+id/cbRemember" />
+
+        <TextView
+            android:id="@+id/btn_forgot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:textSize="16sp"
+            android:fontFamily="@font/urbanist_600"
+            android:text="@string/text_forgot_password_login_fragment"
+            android:textColor="@color/color_default"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
 
         <LinearLayout
             android:id="@+id/linearLayout3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_margin="24dp"
             android:layout_marginHorizontal="24dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnLogin">
+            app:layout_constraintTop_toBottomOf="@+id/btn_forgot">
 
             <View
                 android:layout_width="match_parent"
@@ -133,11 +159,12 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
             android:layout_marginTop="32dp"
+            android:gravity="center"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
@@ -145,23 +172,53 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_facebook"
                 android:background="@drawable/bg_border"
                 android:backgroundTint="?attr/selectableItemBackground"
-                android:paddingVertical="16dp"
                 android:paddingHorizontal="32dp"
+                android:paddingVertical="16dp"
+                android:src="@drawable/ic_facebook"
                 tools:ignore="ContentDescription" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:src="@drawable/ic_google"
                 android:background="@drawable/bg_border"
                 android:backgroundTint="?attr/selectableItemBackground"
-                android:paddingVertical="16dp"
                 android:paddingHorizontal="32dp"
+                android:paddingVertical="16dp"
+                android:src="@drawable/ic_google"
                 tools:ignore="ContentDescription" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="32dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+            app:layout_constraintVertical_bias="0.833">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/urbanist_400"
+                android:text="@string/text_dont_have_an_account_home_auth_fragment"
+                android:textColor="#9E9E9E" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/urbanist_600"
+                android:text="@string/text_sign_up_home_auth_fragment"
+                android:textColor="@color/color_default" />
 
         </LinearLayout>
 
