@@ -48,4 +48,7 @@ dependencies {
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-database")
     implementation("com.google.firebase:firebase-storage")
+
+    // Splash API: https://developer.android.com/develop/ui/views/launch/splash-screen?hl=pt-br#kts
+    implementation 'androidx.core:core-splashscreen:1.0.0'
 }
