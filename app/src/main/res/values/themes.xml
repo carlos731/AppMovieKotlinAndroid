@@ -24,8 +24,8 @@
         <item name="android:padding">15dp</item>
     </style>
 
-    <!--
-    <style name="ThemeEditText">
+
+    <style name="ThemeEditText" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:background">@drawable/bg_edit</item>
         <item name="android:textColor">#212121</item>
         <item name="android:padding">16dp</item>
@@ -33,6 +33,12 @@
         <item name="android:textColorHint">#9E9E9E</item>
     </style>
 
+    <!-- com.google.android.material.textfield.TextInputLayout -->
+    <style name="ThemeInputLayoutEditText" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorSecondary">@color/color_default</item>
+    </style>
+
+    <!--
     <style name="ThemeToolbarSimpleSearchView">
         <item name="android:textColorPrimary">#212121</item>
     </style>
@@ -59,6 +65,12 @@
         <item name="android:fontFamily">@font/urbanist_600</item>
     </style>
     -->
+
+    <!-- CheckBox -->
+    <style name="Theme.CheckBox" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorSecondary">@color/color_default</item>
+        <item name="buttonTint">@color/color_default</item>
+    </style>
 
     <style name="Theme.MovieApp" parent="Base.Theme.MovieApp" />
 </resources>
