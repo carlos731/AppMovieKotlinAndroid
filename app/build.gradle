@@ -2,6 +2,8 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'com.google.gms.google-services'
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
 }
 
 android {
@@ -51,4 +53,8 @@ dependencies {
 
     // Splash API: https://developer.android.com/develop/ui/views/launch/splash-screen?hl=pt-br#kts
     implementation 'androidx.core:core-splashscreen:1.0.0'
+
+    // Dagger Hilt: https://developer.android.com/training/dependency-injection/hilt-android?hl=pt-br#groovy
+    implementation "com.google.dagger:hilt-android:2.44"
+    kapt "com.google.dagger:hilt-compiler:2.44"
 }
