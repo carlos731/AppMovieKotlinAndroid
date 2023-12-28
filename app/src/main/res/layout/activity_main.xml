@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/text_hint_edit_password_register_fragment"
             android:drawableStart="@drawable/ic_password"
-            android:drawablePadding="16dp"
+            android:drawablePadding="12dp"
             android:inputType="textPassword" />
 
     </com.google.android.material.textfield.TextInputLayout>
