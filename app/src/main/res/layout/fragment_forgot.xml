@@ -41,23 +41,35 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView5" />
 
-        <EditText
-            android:id="@+id/edit_email"
-            style="@style/ThemeEditText"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edt_email_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="24dp"
-            android:drawableStart="@drawable/ic_email"
-            android:drawablePadding="12dp"
-            android:hint="@string/text_hint_edit_email_forgot_fragment"
-            android:importantForAutofill="no"
-            android:inputType="textEmailAddress"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="32dp"
+            app:endIconMode="clear_text"
+            app:endIconTint="#9E9E9E"
+            android:theme="@style/ThemeInputLayoutEditText"
+            app:hintEnabled="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+            app:layout_constraintTop_toBottomOf="@+id/textView4">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_email"
+                style="@style/ThemeEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_email"
+                android:drawablePadding="12dp"
+                android:hint="@string/text_hint_edit_email_forgot_fragment"
+                android:inputType="textEmailAddress"
+                android:textColor="#212121" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/btnRecuperarConta"
+            android:id="@+id/btn_forgot"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -66,7 +78,7 @@
             android:theme="@style/ThemeButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edit_email" />
+            app:layout_constraintTop_toBottomOf="@+id/edt_email_layout" />
 
         <ImageView
             android:id="@+id/progress_loading"
@@ -78,7 +90,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnRecuperarConta"
+            app:layout_constraintTop_toBottomOf="@+id/btn_forgot"
             app:layout_constraintVertical_bias="0.0"
             tools:src="@drawable/loading"
             android:visibility="gone"

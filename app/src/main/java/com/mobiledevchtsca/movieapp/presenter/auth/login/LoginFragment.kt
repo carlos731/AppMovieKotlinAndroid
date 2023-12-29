@@ -96,13 +96,6 @@ class LoginFragment : Fragment() {
         }
     }
 
-    /*
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-    */
-
     private fun ocultarTeclado() {
         val inputMethodManager = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(
