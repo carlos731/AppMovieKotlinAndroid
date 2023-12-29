@@ -1,8 +1,9 @@
 package com.mobiledevchtsca.movieapp.domain.usecase.auth
 
 import com.mobiledevchtsca.movieapp.domain.repository.auth.FirebaseAuthentication
+import javax.inject.Inject
 
-class ForgotUseCase constructor(
+class ForgotUseCase @Inject constructor(
     private val firebaseAuthentication: FirebaseAuthentication
 ) {
 
