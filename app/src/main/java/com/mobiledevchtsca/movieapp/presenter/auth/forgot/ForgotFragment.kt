@@ -16,6 +16,8 @@ import com.bumptech.glide.Glide
 import com.mobiledevchtsca.movieapp.R
 import com.mobiledevchtsca.movieapp.databinding.FragmentForgotBinding
 import com.mobiledevchtsca.movieapp.util.StateView
+import com.mobiledevchtsca.movieapp.util.hideKeyboard
+import com.mobiledevchtsca.movieapp.util.isEmailValid
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -56,11 +58,9 @@ class ForgotFragment : Fragment() {
         iniciaEditTexts()
 
         if (email.isNotEmpty()) {
-            val regex = "^(\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*)$".toRegex()
-            val matcher = regex.find(email)
-            if (matcher != null && matcher.value == email) {
+            if (email.isEmailValid()) {
 
-                ocultarTeclado()
+                hideKeyboard()
 
                 forgot(email)
 
@@ -89,13 +89,6 @@ class ForgotFragment : Fragment() {
                 }
             }
         }
-    }
-
-    private fun ocultarTeclado() {
-        val inputMethodManager = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        inputMethodManager.hideSoftInputFromWindow(
-            binding.btnForgot.windowToken, 0
-        )
     }
 
     private fun iniciaEditTexts() {

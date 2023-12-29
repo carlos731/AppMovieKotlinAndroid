@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
 
         val fragmentManager = supportFragmentManager
         val transaction = fragmentManager.beginTransaction()
-        transaction.add(R.id.container, forgotFragment)
+        transaction.add(R.id.container, loginFragment)
         transaction.commit()
     }
 

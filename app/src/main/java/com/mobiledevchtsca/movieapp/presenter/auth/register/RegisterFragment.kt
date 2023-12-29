@@ -18,6 +18,9 @@ import com.google.android.material.textfield.TextInputLayout
 import com.mobiledevchtsca.movieapp.R
 import com.mobiledevchtsca.movieapp.databinding.FragmentRegisterBinding
 import com.mobiledevchtsca.movieapp.util.StateView
+import com.mobiledevchtsca.movieapp.util.hideKeyboard
+import com.mobiledevchtsca.movieapp.util.isEmailValid
+import com.mobiledevchtsca.movieapp.util.isPasswordValid
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -59,16 +62,12 @@ class RegisterFragment : Fragment() {
         iniciaEditTexts()
 
         if (email.isNotEmpty()) {
-            val regex = "^(\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*)$".toRegex()
-            val matcher = regex.find(email)
-            if (matcher != null && matcher.value == email) {
+            if (email.isEmailValid()) {
                 if (password.isNotEmpty()) {
                     if (password.length >= 6) {
-                        // Verifica se a senha contém pelo menos 1 caractere especial, 1 número e 1 letra
-                        val senhaRegex = "^(?=.*[!@#$%^&*()_+\\-=\\\\[\\\\]{};':\\\"\\\\\\\\|,.<>\\\\/?])(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).*$".toRegex()
-                        if (password.matches(senhaRegex)) {
+                        if (password.isPasswordValid()) {
 
-                            ocultarTeclado()
+                            hideKeyboard()
 
                             register(email, password)
 
@@ -120,13 +119,6 @@ class RegisterFragment : Fragment() {
         _binding = null
     }
     */
-
-    private fun ocultarTeclado() {
-        val inputMethodManager = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        inputMethodManager.hideSoftInputFromWindow(
-            binding.btnRegister.windowToken, 0
-        )
-    }
 
     private fun iniciaEditTexts() {
         binding.editEmail.addTextChangedListener(object : TextWatcher {

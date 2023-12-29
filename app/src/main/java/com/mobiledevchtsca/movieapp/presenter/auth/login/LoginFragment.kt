@@ -16,6 +16,8 @@ import com.bumptech.glide.Glide
 import com.mobiledevchtsca.movieapp.R
 import com.mobiledevchtsca.movieapp.databinding.FragmentLoginBinding
 import com.mobiledevchtsca.movieapp.util.StateView
+import com.mobiledevchtsca.movieapp.util.hideKeyboard
+import com.mobiledevchtsca.movieapp.util.isEmailValid
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -56,12 +58,10 @@ class LoginFragment : Fragment() {
         iniciaEditTexts()
 
         if (email.isNotEmpty()) {
-            val regex = "^(\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*)$".toRegex()
-            val matcher = regex.find(email)
-            if (matcher != null && matcher.value == email) {
+            if (email.isEmailValid()) {
                 if (password.isNotEmpty()) {
 
-                    ocultarTeclado()
+                    hideKeyboard()
 
                     login(email, password)
 
@@ -94,13 +94,6 @@ class LoginFragment : Fragment() {
                 }
             }
         }
-    }
-
-    private fun ocultarTeclado() {
-        val inputMethodManager = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        inputMethodManager.hideSoftInputFromWindow(
-            binding.btnLogin.windowToken, 0
-        )
     }
 
     private fun iniciaEditTexts() {
