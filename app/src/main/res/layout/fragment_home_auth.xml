@@ -19,8 +19,7 @@
             android:src="@drawable/ic_image_home_auth"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="ContentDescription" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView"
@@ -42,7 +41,6 @@
             android:layout_marginHorizontal="24dp"
             android:layout_marginTop="32dp"
             android:background="@drawable/bg_border"
-            android:backgroundTint="?attr/selectableItemBackground"
             android:gravity="center"
             android:orientation="horizontal"
             android:padding="16dp"
@@ -53,8 +51,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_facebook"
-                tools:ignore="ContentDescription" />
+                android:src="@drawable/ic_facebook" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -74,7 +71,6 @@
             android:layout_marginHorizontal="24dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/bg_border"
-            android:backgroundTint="?attr/selectableItemBackground"
             android:gravity="center"
             android:orientation="horizontal"
             android:padding="16dp"
@@ -85,8 +81,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_google"
-                tools:ignore="ContentDescription" />
+                android:src="@drawable/ic_google" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -134,7 +129,7 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/btnLoginPassword"
+            android:id="@+id/btn_login_with_password"
             style="@style/ThemeButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -156,7 +151,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnLoginPassword"
+            app:layout_constraintTop_toBottomOf="@+id/btn_login_with_password"
             app:layout_constraintVertical_bias="0.833">
 
             <TextView
@@ -167,10 +162,12 @@
                 android:textColor="#9E9E9E" />
 
             <TextView
+                android:id="@+id/btn_register"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:fontFamily="@font/urbanist_600"
+                android:background="?attr/selectableItemBackground"
                 android:text="@string/text_sign_up_home_auth_fragment"
                 android:textColor="@color/color_default" />
 

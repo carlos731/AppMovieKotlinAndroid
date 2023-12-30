@@ -18,11 +18,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //installSplashScreen()
+        installSplashScreen()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        /*
+
         val registerFragment = RegisterFragment()
         val loginFragment = LoginFragment()
         val forgotFragment = ForgotFragment()
@@ -32,7 +32,6 @@ class MainActivity : AppCompatActivity() {
         val transaction = fragmentManager.beginTransaction()
         transaction.add(R.id.container, loginFragment)
         transaction.commit()
-        */
     }
 
 }

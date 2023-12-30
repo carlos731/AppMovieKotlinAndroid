@@ -16,5 +16,5 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="text_colot_hint">#212121</color>
+    <color name="color_transparent">#00000000</color>
 </resources>
