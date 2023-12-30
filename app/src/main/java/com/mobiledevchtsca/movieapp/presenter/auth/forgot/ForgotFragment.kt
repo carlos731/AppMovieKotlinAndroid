@@ -83,6 +83,7 @@ class ForgotFragment : Fragment() {
                     binding.progressLoading.isVisible = true
                 }
                 is StateView.Success -> {
+                    binding.progressLoading.isVisible = false
                     Toast.makeText(requireContext(), "Email enviado com sucesso!", Toast.LENGTH_SHORT).show()
                 }
                 is StateView.Error -> {
