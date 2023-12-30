@@ -1,6 +1,5 @@
 package com.mobiledevchtsca.movieapp.presenter.auth.register
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
@@ -9,23 +8,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.core.view.isVisible
-import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
-import com.google.android.material.textfield.TextInputLayout
 import com.mobiledevchtsca.movieapp.R
 import com.mobiledevchtsca.movieapp.databinding.FragmentRegisterBinding
-import com.mobiledevchtsca.movieapp.presenter.MainActivity
+import com.mobiledevchtsca.movieapp.presenter.main.activity.MainActivity
 import com.mobiledevchtsca.movieapp.util.FirebaseHelper
 import com.mobiledevchtsca.movieapp.util.StateView
 import com.mobiledevchtsca.movieapp.util.hideKeyboard
 import com.mobiledevchtsca.movieapp.util.initToolbar
 import com.mobiledevchtsca.movieapp.util.isEmailValid
 import com.mobiledevchtsca.movieapp.util.isPasswordValid
-import com.mobiledevchtsca.movieapp.util.showSnackBar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

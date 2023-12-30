@@ -1,8 +1,12 @@
-package com.mobiledevchtsca.movieapp.presenter
+package com.mobiledevchtsca.movieapp.presenter.main.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.core.view.isVisible
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
 import com.mobiledevchtsca.movieapp.R
 import com.mobiledevchtsca.movieapp.databinding.ActivityMainBinding
 import com.mobiledevchtsca.movieapp.presenter.auth.forgot.ForgotFragment
@@ -16,13 +20,17 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
+    private lateinit var navController: NavController
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         installSplashScreen()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        initNavigation()
 
+        /*
         val registerFragment = RegisterFragment()
         val loginFragment = LoginFragment()
         val forgotFragment = ForgotFragment()
@@ -32,6 +40,22 @@ class MainActivity : AppCompatActivity() {
         val transaction = fragmentManager.beginTransaction()
         transaction.add(R.id.container, loginFragment)
         transaction.commit()
+        */
+    }
+
+    private fun initNavigation() {
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        navController = navHostFragment.navController
+        NavigationUI.setupWithNavController(binding.btnv, navController)
+
+        navController.addOnDestinationChangedListener { controller, destination, arg ->
+            binding.btnv.isVisible =
+                destination.id == R.id.menu_home ||
+                destination.id == R.id.menu_search ||
+                destination.id == R.id.menu_favorite ||
+                destination.id == R.id.menu_download ||
+                destination.id == R.id.menu_profile
+        }
     }
 
 }

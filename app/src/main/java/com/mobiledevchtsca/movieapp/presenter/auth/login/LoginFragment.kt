@@ -16,13 +16,12 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.mobiledevchtsca.movieapp.R
 import com.mobiledevchtsca.movieapp.databinding.FragmentLoginBinding
-import com.mobiledevchtsca.movieapp.presenter.MainActivity
+import com.mobiledevchtsca.movieapp.presenter.main.activity.MainActivity
 import com.mobiledevchtsca.movieapp.util.FirebaseHelper
 import com.mobiledevchtsca.movieapp.util.StateView
 import com.mobiledevchtsca.movieapp.util.hideKeyboard
 import com.mobiledevchtsca.movieapp.util.initToolbar
 import com.mobiledevchtsca.movieapp.util.isEmailValid
-import com.mobiledevchtsca.movieapp.util.showSnackBar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

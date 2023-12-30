@@ -38,7 +38,7 @@
     <string name="text_email_empty_forgot_fragment">Digite um e-mail válido</string>
     <string name="text_send_email_success_empty_forgot_fragment">Email enviado com sucesso</string>
 
-    <!--    Generic-->
+    <!-- Generic -->
     <string name="text_name_empty">Digite seu nome</string>
     <string name="text_email_empty">Digite seu e-mail</string>
     <string name="text_phone_empty">Digite seu telefone</string>
@@ -47,12 +47,21 @@
     <string name="error_generic">Ocorreu um erro, por favor tente novamente mais tarde.</string>
     <string name="text_formated_value">R$ %1$s</string>
 
-    <!--    Erros Firebase Authentication-->
+    <!-- Erros Firebase Authentication -->
     <string name="account_not_registered_register_fragment">Nenhuma conta encontrada com este e-mail.</string>
     <string name="invalid_email_register_fragment">Insira um e-mail válido.</string>
     <string name="invalid_password_register_fragment">Senha inválida, tente novamente.</string>
     <string name="email_in_use_register_fragment">Este e-mail já está em uso.</string>
     <string name="strong_password_register_fragment">Insira uma senha mais forte.</string>
     <string name="invalid_password_or_email">Email ou senha inválidos.</string>
+
+    <!-- BottomBar -->
+    <string name="title_menu_home">Início</string>
+    <string name="title_menu_search">Pesquisar</string>
+    <string name="title_menu_favorite">Favorite</string>
+    <string name="title_menu_download">Baixar</string>
+    <string name="title_menu_profile">Perfil</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
