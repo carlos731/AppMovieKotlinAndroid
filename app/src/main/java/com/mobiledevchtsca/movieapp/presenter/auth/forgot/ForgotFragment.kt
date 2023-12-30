@@ -17,6 +17,7 @@ import com.mobiledevchtsca.movieapp.R
 import com.mobiledevchtsca.movieapp.databinding.FragmentForgotBinding
 import com.mobiledevchtsca.movieapp.util.StateView
 import com.mobiledevchtsca.movieapp.util.hideKeyboard
+import com.mobiledevchtsca.movieapp.util.initToolbar
 import com.mobiledevchtsca.movieapp.util.isEmailValid
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -39,6 +40,7 @@ class ForgotFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initToolbar(toolbar = binding.toolbar)
 
         initListeners()
     }

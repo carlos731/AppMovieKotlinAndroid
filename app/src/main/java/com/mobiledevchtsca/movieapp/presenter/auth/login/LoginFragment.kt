@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
@@ -18,6 +17,7 @@ import com.mobiledevchtsca.movieapp.R
 import com.mobiledevchtsca.movieapp.databinding.FragmentLoginBinding
 import com.mobiledevchtsca.movieapp.util.StateView
 import com.mobiledevchtsca.movieapp.util.hideKeyboard
+import com.mobiledevchtsca.movieapp.util.initToolbar
 import com.mobiledevchtsca.movieapp.util.isEmailValid
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -39,6 +39,7 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initToolbar(toolbar = binding.toolbar)
 
         initListeners()
     }
