@@ -1,9 +1,10 @@
 package com.mobiledevchtsca.movieapp.presenter.auth.login
 
-import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,10 +16,13 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.mobiledevchtsca.movieapp.R
 import com.mobiledevchtsca.movieapp.databinding.FragmentLoginBinding
+import com.mobiledevchtsca.movieapp.presenter.MainActivity
+import com.mobiledevchtsca.movieapp.util.FirebaseHelper
 import com.mobiledevchtsca.movieapp.util.StateView
 import com.mobiledevchtsca.movieapp.util.hideKeyboard
 import com.mobiledevchtsca.movieapp.util.initToolbar
 import com.mobiledevchtsca.movieapp.util.isEmailValid
+import com.mobiledevchtsca.movieapp.util.showSnackBar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -78,10 +82,12 @@ class LoginFragment : Fragment() {
                 } else {
                     binding.editPassword.requestFocus()
                     binding.edtSenhaLayout.error = "Informe sua senha."
+                    //showSnackBar(message = R.string.text_password_empty_login_fragment)
                 }
             } else {
                 binding.editEmail.requestFocus()
                 binding.edtEmailLayout.error = "Informe um email válido."
+                //showSnackBar(message = R.string.text_email_empty_login_fragment)
             }
         } else {
             binding.editEmail.requestFocus()
@@ -96,11 +102,20 @@ class LoginFragment : Fragment() {
                     binding.progressLoading.isVisible = true
                 }
                 is StateView.Success -> {
-                    Toast.makeText(requireContext(), "Login realizado com sucesso!", Toast.LENGTH_SHORT).show()
+
+                    startActivity(Intent(requireContext(), MainActivity::class.java))
+                    requireActivity().finish()
+
+                    // Toast.makeText(requireContext(), "Login realizado com sucesso!", Toast.LENGTH_SHORT).show()
                 }
                 is StateView.Error -> {
                     binding.progressLoading.isVisible = false
-                    Toast.makeText(requireContext(), stateView.message, Toast.LENGTH_SHORT).show()
+
+                    Log.i("FIREBASE", stateView.message ?: "")
+
+                    // showSnackBar(message = FirebaseHelper.validError(error = stateView.message ?: ""))
+
+                    Toast.makeText(requireContext(), FirebaseHelper.validError(error = stateView.message ?: ""), Toast.LENGTH_SHORT).show()
                 }
             }
         }

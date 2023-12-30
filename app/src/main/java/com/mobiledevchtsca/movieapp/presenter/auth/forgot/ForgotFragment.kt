@@ -15,10 +15,12 @@ import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.mobiledevchtsca.movieapp.R
 import com.mobiledevchtsca.movieapp.databinding.FragmentForgotBinding
+import com.mobiledevchtsca.movieapp.util.FirebaseHelper
 import com.mobiledevchtsca.movieapp.util.StateView
 import com.mobiledevchtsca.movieapp.util.hideKeyboard
 import com.mobiledevchtsca.movieapp.util.initToolbar
 import com.mobiledevchtsca.movieapp.util.isEmailValid
+import com.mobiledevchtsca.movieapp.util.showSnackBar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -69,6 +71,7 @@ class ForgotFragment : Fragment() {
             } else {
                 binding.editEmail.requestFocus()
                 binding.edtEmailLayout.error = "Informe um email válido."
+                //showSnackBar(message = R.string.text_email_empty_forgot_fragment)
             }
         } else {
             binding.editEmail.requestFocus()
@@ -84,11 +87,17 @@ class ForgotFragment : Fragment() {
                 }
                 is StateView.Success -> {
                     binding.progressLoading.isVisible = false
+
+                   //showSnackBar(message = R.string.text_send_email_success_empty_forgot_fragment)
+
                     Toast.makeText(requireContext(), "Email enviado com sucesso!", Toast.LENGTH_SHORT).show()
                 }
                 is StateView.Error -> {
                     binding.progressLoading.isVisible = false
-                    Toast.makeText(requireContext(), stateView.message, Toast.LENGTH_SHORT).show()
+
+                    //showSnackBar(message = FirebaseHelper.validError(error = stateView.message ?: ""))
+
+                    Toast.makeText(requireContext(), FirebaseHelper.validError(error = stateView.message ?: ""), Toast.LENGTH_SHORT).show()
                 }
             }
         }
