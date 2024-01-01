@@ -8,7 +8,7 @@ import androidx.core.view.isVisible
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
-import com.google.firebase.database.collection.BuildConfig
+import com.mobiledevchtsca.movieapp.BuildConfig
 import com.mobiledevchtsca.movieapp.R
 import com.mobiledevchtsca.movieapp.databinding.ActivityMainBinding
 import com.mobiledevchtsca.movieapp.presenter.auth.forgot.ForgotFragment
@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
 
         initNavigation()
 
-        val apiKey = com.mobiledevchtsca.movieapp.BuildConfig.API_KEY
+        val apiKey = BuildConfig.API_KEY
         Log.i("INFOKEY", apiKey)
 
         /*
