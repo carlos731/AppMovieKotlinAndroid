@@ -19,4 +19,5 @@ interface ServiceApi {
         @Query("with_genres") genreId: Int?,
         @Query("language") language: String?,
     ): BasePaginationRemote<List<MovieResponse>>
+
 }
