@@ -15,6 +15,7 @@ import com.mobiledevchtsca.movieapp.presenter.auth.forgot.ForgotFragment
 import com.mobiledevchtsca.movieapp.presenter.auth.login.LoginFragment
 import com.mobiledevchtsca.movieapp.presenter.auth.register.RegisterFragment
 import com.mobiledevchtsca.movieapp.presenter.onboarding.OnboardingFragment
+import com.mobiledevchtsca.movieapp.util.FirebaseHelper
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -31,9 +32,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         initNavigation()
-
-        val apiKey = BuildConfig.API_KEY
-        Log.i("INFOKEY", apiKey)
 
         /*
         val registerFragment = RegisterFragment()
