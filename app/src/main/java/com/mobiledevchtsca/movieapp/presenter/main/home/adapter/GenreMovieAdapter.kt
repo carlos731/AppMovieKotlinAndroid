@@ -47,6 +47,7 @@ class GenreMovieAdapter: ListAdapter<GenrePresentation, GenreMovieAdapter.MyView
         holder.binding.recyclerMovies.setHasFixedSize(true)
         holder.binding.recyclerMovies.adapter = movieAdapter
         movieAdapter.submitList(genre.movies)
+
     }
 
 

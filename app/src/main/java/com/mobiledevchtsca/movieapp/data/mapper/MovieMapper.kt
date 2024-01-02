@@ -4,6 +4,7 @@ import com.mobiledevchtsca.movieapp.data.model.GenreResponse
 import com.mobiledevchtsca.movieapp.data.model.MovieResponse
 import com.mobiledevchtsca.movieapp.domain.model.Genre
 import com.mobiledevchtsca.movieapp.domain.model.Movie
+import com.mobiledevchtsca.movieapp.presenter.model.GenrePresentation
 
 fun GenreResponse.toDomain(): Genre {
     return Genre(
@@ -28,5 +29,13 @@ fun MovieResponse.toDomain(): Movie {
         video = video,
         voteAverage = voteAverage,
         voteCount = voteCount
+    )
+}
+
+fun Genre.toPresentation(): GenrePresentation {
+    return GenrePresentation(
+        id = id,
+        name = name,
+        movies = emptyList()
     )
 }
