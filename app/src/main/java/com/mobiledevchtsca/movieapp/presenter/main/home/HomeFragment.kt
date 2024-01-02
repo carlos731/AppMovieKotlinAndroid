@@ -6,10 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.mobiledevchtsca.movieapp.databinding.FragmentHomeBinding
 import com.mobiledevchtsca.movieapp.presenter.main.home.adapter.GenreMovieAdapter
+import com.mobiledevchtsca.movieapp.presenter.model.GenrePresentation
 import com.mobiledevchtsca.movieapp.util.StateView
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -53,12 +57,38 @@ class HomeFragment : Fragment() {
 
                 }
                 is StateView.Success -> {
-                    genreMovieAdapter.submitList(stateView.data)
+                    val genres = stateView.data ?: emptyList()
+                    genreMovieAdapter.submitList(genres)
+                    getMoviesByGenre(genres)
                 }
                 is StateView.Error -> {
                 }
             }
         }
+    }
+
+    private fun getMoviesByGenre(genres: List<GenrePresentation>) {
+        val genreMutableList = genres.toMutableList()
+
+        genreMutableList.forEachIndexed { index, genre ->
+            viewModel.getMoviesByGenre(genre.id).observe(viewLifecycleOwner) { stateView ->
+                when(stateView) {
+                    is StateView.Loading -> {
+
+                    }
+                    is StateView.Success -> {
+                        genreMutableList[index] = genre.copy(movies = stateView.data)
+                        lifecycleScope.launch {
+                            delay(1000)
+                            genreMovieAdapter.submitList(genreMutableList)
+                        }
+                    }
+                    is StateView.Error -> {
+                    }
+                }
+            }
+        }
+
     }
 
     /*
