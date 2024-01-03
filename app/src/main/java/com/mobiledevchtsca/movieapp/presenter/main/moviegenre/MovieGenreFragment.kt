@@ -17,6 +17,7 @@ import com.mobiledevchtsca.movieapp.R
 import com.mobiledevchtsca.movieapp.databinding.FragmentMovieGenreBinding
 import com.mobiledevchtsca.movieapp.presenter.main.bottombar.home.adapter.MovieAdapter
 import com.mobiledevchtsca.movieapp.util.StateView
+import com.mobiledevchtsca.movieapp.util.hideKeyboard
 import com.mobiledevchtsca.movieapp.util.initToolbar
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -75,8 +76,12 @@ class MovieGenreFragment : Fragment() {
     private fun initSearchView() {
         binding.simpleSearchView.setOnQueryTextListener(object : SimpleSearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-                Log.d("SimpleSearchView", "Submit:$query")
-                return false
+                //Log.d("SimpleSearchView", "Submit:$query")
+                hideKeyboard()
+                if (query.isNotEmpty()) {
+                    searchMovies(query)
+                }
+                return true
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
@@ -100,6 +105,25 @@ class MovieGenreFragment : Fragment() {
                 is StateView.Success -> {
                     binding.progressBar.isVisible = false
                     movieAdapter.submitList(stateView.data)
+                }
+                is StateView.Error -> {
+                    binding.progressBar.isVisible = false
+                }
+            }
+        }
+    }
+
+    private fun searchMovies(query: String?) {
+        viewModel.searchMovies(query).observe(viewLifecycleOwner) { stateView ->
+            when(stateView) {
+                is StateView.Loading -> {
+                    binding.recyclerMovies.isVisible = false
+                    binding.progressBar.isVisible = true
+                }
+                is StateView.Success -> {
+                    binding.progressBar.isVisible = false
+                    movieAdapter.submitList(stateView.data)
+                    binding.recyclerMovies.isVisible = true
                 }
                 is StateView.Error -> {
                     binding.progressBar.isVisible = false

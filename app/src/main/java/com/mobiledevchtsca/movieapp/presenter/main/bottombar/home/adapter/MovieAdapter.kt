@@ -43,6 +43,7 @@ class MovieAdapter(
         Glide
             .with(context)
             .load("https://image.tmdb.org/t/p/w500${movie.posterPath}")
+            //.error(R.drawable.movie)
             .into(holder.movieImage)
     }
 
