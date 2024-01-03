@@ -1,4 +1,4 @@
-package com.mobiledevchtsca.movieapp.presenter.main.home
+package com.mobiledevchtsca.movieapp.presenter.main.bottombar.home
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,8 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.mobiledevchtsca.movieapp.databinding.FragmentHomeBinding
-import com.mobiledevchtsca.movieapp.presenter.main.home.adapter.GenreMovieAdapter
+import com.mobiledevchtsca.movieapp.presenter.main.bottombar.home.adapter.GenreMovieAdapter
 import com.mobiledevchtsca.movieapp.presenter.model.GenrePresentation
 import com.mobiledevchtsca.movieapp.util.StateView
 import dagger.hilt.android.AndroidEntryPoint
@@ -42,7 +43,10 @@ class HomeFragment : Fragment() {
     }
 
     private fun initRecycler() {
-        genreMovieAdapter = GenreMovieAdapter()
+        genreMovieAdapter = GenreMovieAdapter { genreId ->
+            val action = HomeFragmentDirections.actionMenuHomeToMovieGenreFragment(genreId)
+            findNavController().navigate(action)
+        }
 
         with(binding.recyclerGenres) {
             setHasFixedSize(true)

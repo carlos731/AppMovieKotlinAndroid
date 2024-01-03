@@ -1,4 +1,4 @@
-package com.mobiledevchtsca.movieapp.presenter.main.home.adapter
+package com.mobiledevchtsca.movieapp.presenter.main.bottombar.home.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,7 +9,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mobiledevchtsca.movieapp.databinding.GenreItemBinding
 import com.mobiledevchtsca.movieapp.presenter.model.GenrePresentation
 
-class GenreMovieAdapter: ListAdapter<GenrePresentation, GenreMovieAdapter.MyViewHolder>(DIFF_CALLBACK) {
+class GenreMovieAdapter(
+    private val showAllListener: (Int) -> Unit
+): ListAdapter<GenrePresentation, GenreMovieAdapter.MyViewHolder>(
+    DIFF_CALLBACK
+) {
 
     companion object {
         val DIFF_CALLBACK = object: DiffUtil.ItemCallback<GenrePresentation>(){
@@ -42,6 +46,10 @@ class GenreMovieAdapter: ListAdapter<GenrePresentation, GenreMovieAdapter.MyView
 
         val movieAdapter = MovieAdapter(holder.binding.root.context)
         val layoutManager = LinearLayoutManager(holder.binding.root.context, LinearLayoutManager.HORIZONTAL, false)
+
+        holder.binding.textShowAll.setOnClickListener {
+            genre.id?.let { showAllListener(it) }
+        }
 
         holder.binding.recyclerMovies.layoutManager = layoutManager
         holder.binding.recyclerMovies.setHasFixedSize(true)

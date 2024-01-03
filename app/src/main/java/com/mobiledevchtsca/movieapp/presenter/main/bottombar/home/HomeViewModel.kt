@@ -1,4 +1,4 @@
-package com.mobiledevchtsca.movieapp.presenter.main.home
+package com.mobiledevchtsca.movieapp.presenter.main.bottombar.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData

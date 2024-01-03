@@ -1,4 +1,4 @@
-package com.mobiledevchtsca.movieapp.presenter.main.home.adapter
+package com.mobiledevchtsca.movieapp.presenter.main.bottombar.home.adapter
 
 import android.content.Context
 import android.view.LayoutInflater

@@ -1,4 +1,4 @@
-package com.mobiledevchtsca.movieapp.presenter.main.profile
+package com.mobiledevchtsca.movieapp.presenter.main.bottombar.profile
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
