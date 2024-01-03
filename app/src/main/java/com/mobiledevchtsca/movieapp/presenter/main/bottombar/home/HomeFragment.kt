@@ -43,8 +43,8 @@ class HomeFragment : Fragment() {
     }
 
     private fun initRecycler() {
-        genreMovieAdapter = GenreMovieAdapter { genreId ->
-            val action = HomeFragmentDirections.actionMenuHomeToMovieGenreFragment(genreId)
+        genreMovieAdapter = GenreMovieAdapter { genreId, name ->
+            val action = HomeFragmentDirections.actionMenuHomeToMovieGenreFragment(genreId, name)
             findNavController().navigate(action)
         }
 

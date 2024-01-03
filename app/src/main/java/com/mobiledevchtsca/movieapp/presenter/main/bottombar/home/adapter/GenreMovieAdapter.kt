@@ -11,7 +11,7 @@ import com.mobiledevchtsca.movieapp.databinding.GenreItemBinding
 import com.mobiledevchtsca.movieapp.presenter.model.GenrePresentation
 
 class GenreMovieAdapter(
-    private val showAllListener: (Int) -> Unit
+    private val showAllListener: (Int, String) -> Unit
 ): ListAdapter<GenrePresentation, GenreMovieAdapter.MyViewHolder>(
     DIFF_CALLBACK
 ) {
@@ -57,7 +57,7 @@ class GenreMovieAdapter(
         )
 
         holder.binding.textShowAll.setOnClickListener {
-            genre.id?.let { showAllListener(it) }
+            genre.id?.let { showAllListener(genre.id, genre.name ?: "") }
         }
 
         holder.binding.recyclerMovies.layoutManager = layoutManager

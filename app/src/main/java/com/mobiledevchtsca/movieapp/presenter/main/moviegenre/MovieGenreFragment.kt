@@ -41,6 +41,7 @@ class MovieGenreFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initToolbar(toolbar = binding.toolbar)
+        binding.textTitle.text = args.name
 
         initRecycler()
 
