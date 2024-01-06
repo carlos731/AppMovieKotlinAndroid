@@ -19,4 +19,10 @@ interface MovieRepository {
         query: String?
     ): List<MovieResponse>
 
+    suspend fun getMovieDetails(
+        apiKey: String,
+        language: String?,
+        movieId: Int?
+    ): MovieResponse
+
 }

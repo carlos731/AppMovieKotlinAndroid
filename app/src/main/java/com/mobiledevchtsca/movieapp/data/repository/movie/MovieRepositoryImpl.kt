@@ -39,4 +39,16 @@ class MovieRepositoryImpl @Inject constructor(
             query = query
         ).results ?: emptyList()
     }
+
+    override suspend fun getMovieDetails(
+        apiKey: String,
+        language: String?,
+        movieId: Int?
+    ): MovieResponse {
+        return serviceApi.getMovieDetails(
+            apiKey = apiKey,
+            language = language,
+            movieId = movieId
+        )
+    }
 }

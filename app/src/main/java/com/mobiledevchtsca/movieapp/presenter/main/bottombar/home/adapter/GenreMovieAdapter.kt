@@ -11,7 +11,8 @@ import com.mobiledevchtsca.movieapp.databinding.GenreItemBinding
 import com.mobiledevchtsca.movieapp.presenter.model.GenrePresentation
 
 class GenreMovieAdapter(
-    private val showAllListener: (Int, String) -> Unit
+    private val showAllListener: (Int, String) -> Unit,
+    private val movieClickListener: (Int?) -> Unit
 ): ListAdapter<GenrePresentation, GenreMovieAdapter.MyViewHolder>(
     DIFF_CALLBACK
 ) {
@@ -47,7 +48,8 @@ class GenreMovieAdapter(
 
         val movieAdapter = MovieAdapter(
             context = holder.binding.root.context,
-            layoutInflater = R.layout.movie_item
+            layoutInflater = R.layout.movie_item,
+            movieClickListener = movieClickListener
         )
 
         val layoutManager = LinearLayoutManager(
