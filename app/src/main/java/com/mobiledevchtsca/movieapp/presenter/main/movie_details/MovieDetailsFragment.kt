@@ -7,9 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
 import com.mobiledevchtsca.movieapp.databinding.FragmentMovieDetailsBinding
 import com.mobiledevchtsca.movieapp.domain.model.Movie
 import com.mobiledevchtsca.movieapp.util.StateView
+import com.mobiledevchtsca.movieapp.util.initToolbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -31,6 +33,7 @@ class MovieDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initToolbar(binding.toolbar, lightIcon = true)
 
         getMovieDetails()
     }
@@ -52,7 +55,12 @@ class MovieDetailsFragment : Fragment() {
     }
 
     private fun configData(movie: Movie?) {
+        Glide
+            .with(requireContext())
+            .load("https://image.tmdb.org/t/p/w500${movie?.posterPath}")
+            .into(binding.imageMovie)
 
+        binding.textMovie.text = movie?.title
     }
 
     /*
