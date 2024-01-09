@@ -1,7 +1,9 @@
 package com.mobiledevchtsca.movieapp.data.mapper
 
+import com.mobiledevchtsca.movieapp.data.model.CountryResponse
 import com.mobiledevchtsca.movieapp.data.model.GenreResponse
 import com.mobiledevchtsca.movieapp.data.model.MovieResponse
+import com.mobiledevchtsca.movieapp.domain.model.Country
 import com.mobiledevchtsca.movieapp.domain.model.Genre
 import com.mobiledevchtsca.movieapp.domain.model.Movie
 import com.mobiledevchtsca.movieapp.presenter.model.GenrePresentation
@@ -28,7 +30,8 @@ fun MovieResponse.toDomain(): Movie {
         title = title,
         video = video,
         voteAverage = voteAverage,
-        voteCount = voteCount
+        voteCount = voteCount,
+        productionCountries = productionCountries?.map { it.toDomain() }
     )
 }
 
@@ -39,3 +42,7 @@ fun Genre.toPresentation(): GenrePresentation {
         movies = emptyList()
     )
 }
+
+fun CountryResponse.toDomain() = Country(
+    name = name
+)

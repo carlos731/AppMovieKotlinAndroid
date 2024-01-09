@@ -13,6 +13,8 @@ import com.mobiledevchtsca.movieapp.domain.model.Movie
 import com.mobiledevchtsca.movieapp.util.StateView
 import com.mobiledevchtsca.movieapp.util.initToolbar
 import dagger.hilt.android.AndroidEntryPoint
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 @AndroidEntryPoint
 class MovieDetailsFragment : Fragment() {
@@ -61,6 +63,18 @@ class MovieDetailsFragment : Fragment() {
             .into(binding.imageMovie)
 
         binding.textMovie.text = movie?.title
+
+        binding.textVoteAverage.text = String.format("%.1f", movie?.voteAverage)
+
+        val originalFormat = SimpleDateFormat("yyyy-MM-dd", Locale.ROOT)
+        val data = originalFormat.parse(movie?.releaseDate ?: "")
+
+        val yearFormat = SimpleDateFormat("yyyy", Locale.ROOT)
+        val year = yearFormat.format(data)
+
+        binding.textReleaseDate.text = year
+
+        binding.textProductionCountry.text = movie?.productionCountries?.get(0)?.name ?: ""
     }
 
     /*
