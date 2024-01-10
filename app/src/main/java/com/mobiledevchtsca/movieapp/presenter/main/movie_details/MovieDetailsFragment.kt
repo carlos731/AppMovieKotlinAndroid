@@ -5,9 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
+import com.mobiledevchtsca.movieapp.R
 import com.mobiledevchtsca.movieapp.databinding.FragmentMovieDetailsBinding
 import com.mobiledevchtsca.movieapp.domain.model.Movie
 import com.mobiledevchtsca.movieapp.util.StateView
@@ -44,13 +46,20 @@ class MovieDetailsFragment : Fragment() {
         viewModel.getMovieDetails(movieId = args.movieId).observe(viewLifecycleOwner) { stateView ->
             when (stateView) {
                 is StateView.Loading -> {
-
+                    binding.progressBar.isVisible = true
+                    binding.horizontalScrollView.isVisible = false
+                    binding.groupButtons1.isVisible = false
+                    binding.groupButtons2.isVisible = false
                 }
                 is StateView.Success -> {
+                    binding.progressBar.isVisible = false
                     configData(movie = stateView.data)
+                    binding.horizontalScrollView.isVisible = true
+                    binding.groupButtons1.isVisible = true
+                    binding.groupButtons2.isVisible = true
                 }
                 is StateView.Error -> {
-
+                    binding.progressBar.isVisible = false
                 }
             }
         }
@@ -75,6 +84,10 @@ class MovieDetailsFragment : Fragment() {
         binding.textReleaseDate.text = year
 
         binding.textProductionCountry.text = movie?.productionCountries?.get(0)?.name ?: ""
+
+        val genres = movie?.genres?.map { it.name }?.joinToString(", ")
+
+        binding.textGenres.text = getString(R.string.text_all_genres_movie_details_fragment, genres)
     }
 
     /*

@@ -1,6 +1,7 @@
 package com.mobiledevchtsca.movieapp.data.model
 
 import com.google.gson.annotations.SerializedName
+import com.mobiledevchtsca.movieapp.domain.model.Genre
 
 
 data class MovieResponse(
@@ -10,8 +11,8 @@ data class MovieResponse(
     @SerializedName("backdrop_path")
     val backdropPath: String?,
 
-    @SerializedName("genre_ids")
-    val genreIds: List<Int>?,
+    @SerializedName("genres")
+    val genres: List<GenreResponse>?,
 
     @SerializedName("id")
     val id: Int?,
