@@ -232,6 +232,21 @@
                 app:layout_constraintTop_toBottomOf="@+id/group_buttons_2"
                 tools:text="Genre: Action, Superhero, Science Fiction, Romance, Thriller" />
 
+            <TextView
+                android:id="@+id/text_description"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/urbanist_500"
+                android:maxLines="3"
+                android:textColor="#424242"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_genres"
+                tools:text="Description: Após formar uma família, Jake Sully e Ney'tiri fazem de tudo para ficarem juntos. No entanto, eles devem sair de casa e explorar as regiões de Pandora quando uma antiga ameaça ressurge, e Jake deve travar uma guerra difícil contra os humanos." />
+            
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ProgressBar

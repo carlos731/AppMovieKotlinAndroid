@@ -86,8 +86,9 @@ class MovieDetailsFragment : Fragment() {
         binding.textProductionCountry.text = movie?.productionCountries?.get(0)?.name ?: ""
 
         val genres = movie?.genres?.map { it.name }?.joinToString(", ")
-
         binding.textGenres.text = getString(R.string.text_all_genres_movie_details_fragment, genres)
+
+        binding.textDescription.text = getString(R.string.text_all_description_movie_details_fragment, movie?.overview)
     }
 
     /*
