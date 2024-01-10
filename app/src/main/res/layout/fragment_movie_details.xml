@@ -88,6 +88,7 @@
             </LinearLayout>
 
             <HorizontalScrollView
+                android:id="@+id/horizontalScrollView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -175,6 +176,45 @@
                 </LinearLayout>
 
             </HorizontalScrollView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView">
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="match_parent"
+                    android:layout_height="38dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_border_red_full_fill"
+                    android:fontFamily="@font/urbanist_600"
+                    android:text="Play"
+                    android:textAllCaps="false"
+                    app:icon="@drawable/ic_play"
+                    app:iconGravity="textStart" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="match_parent"
+                    android:layout_height="38dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_border_red_full_line"
+                    app:backgroundTint="@null"
+                    android:drawableStart="@drawable/ic_download"
+                    android:fontFamily="@font/urbanist_600"
+                    android:text="Download"
+                    android:textColor="@color/color_default"
+                    android:textAllCaps="false"
+                    app:icon="@drawable/ic_download"
+                    app:iconGravity="textStart"
+                    app:iconTint="@color/color_default"/>
+
+            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
