@@ -246,7 +246,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/text_genres"
                 tools:text="Description: Após formar uma família, Jake Sully e Ney'tiri fazem de tudo para ficarem juntos. No entanto, eles devem sair de casa e explorar as regiões de Pandora quando uma antiga ameaça ressurge, e Jake deve travar uma guerra difícil contra os humanos." />
-            
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ProgressBar
