@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="10dp">
+    android:layout_marginEnd="20dp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
@@ -19,7 +19,6 @@
             android:id="@+id/person_image"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scaleType="centerCrop"
             tools:src="@drawable/person_placeholder" />
 
     </androidx.cardview.widget.CardView>
@@ -28,7 +27,7 @@
         android:id="@+id/person_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
+        android:layout_marginStart="5dp"
         android:fontFamily="@font/urbanist_600"
         android:textColor="#212121"
         android:textSize="11sp"
@@ -40,13 +39,13 @@
     <TextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
+        android:layout_marginStart="5dp"
         android:fontFamily="@font/urbanist_400"
+        android:text="Elenco"
         android:textColor="#616161"
         android:textSize="11sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/cardView"
-        tools:text="Elenco" />
+        app:layout_constraintStart_toEndOf="@+id/cardView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

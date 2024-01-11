@@ -8,10 +8,12 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.mobiledevchtsca.movieapp.R
 import com.mobiledevchtsca.movieapp.databinding.FragmentMovieDetailsBinding
 import com.mobiledevchtsca.movieapp.domain.model.Movie
+import com.mobiledevchtsca.movieapp.presenter.main.movie_details.adapter.CastAdapter
 import com.mobiledevchtsca.movieapp.util.StateView
 import com.mobiledevchtsca.movieapp.util.initToolbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -26,6 +28,9 @@ class MovieDetailsFragment : Fragment() {
     private val viewModel: MovieDetailsViewModel by viewModels()
     private var _binding: FragmentMovieDetailsBinding? = null
     private val binding get() = _binding!!
+
+    private lateinit var castAdapter: CastAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -40,6 +45,8 @@ class MovieDetailsFragment : Fragment() {
         initToolbar(binding.toolbar, lightIcon = true)
 
         getMovieDetails()
+
+        initRecyclerCredits()
     }
 
     private fun getMovieDetails() {
@@ -69,13 +76,14 @@ class MovieDetailsFragment : Fragment() {
         viewModel.getCredits(movieId = args.movieId).observe(viewLifecycleOwner) { stateView ->
             when (stateView) {
                 is StateView.Loading -> {
-
+                    binding.progressCast.isVisible = true
                 }
                 is StateView.Success -> {
-                    
+                    binding.progressCast.isVisible = false
+                    castAdapter.submitList(stateView.data?.cast)
                 }
                 is StateView.Error -> {
-                    binding.progressBar.isVisible = false
+
                 }
             }
         }
@@ -105,6 +113,20 @@ class MovieDetailsFragment : Fragment() {
         binding.textGenres.text = getString(R.string.text_all_genres_movie_details_fragment, genres)
 
         binding.textDescription.text = getString(R.string.text_all_description_movie_details_fragment, movie?.overview)
+
+        getCredits()
+    }
+
+    private fun initRecyclerCredits() {
+        castAdapter = CastAdapter()
+
+        with(binding.recyclerCast) {
+            //setHasFixedSize(true) // Não pode usar quando o item não tem tamanho fixo
+            layoutManager = LinearLayoutManager(
+                requireContext(), LinearLayoutManager.HORIZONTAL, false
+            )
+            adapter = castAdapter
+        }
     }
 
     /*

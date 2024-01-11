@@ -2,10 +2,12 @@ package com.mobiledevchtsca.movieapp.presenter.main.movie_details.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.mobiledevchtsca.movieapp.R
 import com.mobiledevchtsca.movieapp.databinding.CastItemBinding
 import com.mobiledevchtsca.movieapp.domain.model.Person
 
@@ -45,8 +47,10 @@ class CastAdapter: ListAdapter<Person, CastAdapter.MyViewHolder>(DIFF_CALLBACK) 
         Glide
             .with(holder.binding.root.context)
             .load("https://image.tmdb.org/t/p/w500${person.profilePath}")
-            //.error(R.drawable.movie)
+            .error(R.drawable.avatar)
             .into(holder.binding.personImage)
+
+        holder.binding.personImage.scaleType = ImageView.ScaleType.CENTER_CROP
 
         holder.binding.personName.text = person.name
     }
