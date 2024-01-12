@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">Movie App</string>
 
+    <!-- Tab Layout -->
+    <string name="title_trailers_tab_layout">Trailers</string>
+    <string name="title_similares_tab_layout">Similares</string>
+    <string name="title_comentarios_tab_layout">Comentarios</string>
+
     <!-- HomeAuthFragment -->
     <string name="title_home_auth_fragment">Entrar com</string>
     <string name="button_continue_with_facebook_home_auth_fragment">Continuar com o Facebook</string>

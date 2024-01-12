@@ -9,11 +9,16 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import br.com.hellodev.movieapp.presenter.main.moviedetails.adapter.ViewPagerAdapter
 import com.bumptech.glide.Glide
+import com.google.android.material.tabs.TabLayoutMediator
 import com.mobiledevchtsca.movieapp.R
 import com.mobiledevchtsca.movieapp.databinding.FragmentMovieDetailsBinding
 import com.mobiledevchtsca.movieapp.domain.model.Movie
 import com.mobiledevchtsca.movieapp.presenter.main.movie_details.adapter.CastAdapter
+import com.mobiledevchtsca.movieapp.presenter.main.movie_details.tabs.ComentsFragment
+import com.mobiledevchtsca.movieapp.presenter.main.movie_details.tabs.SimilarFragment
+import com.mobiledevchtsca.movieapp.presenter.main.movie_details.tabs.TrailersFragment
 import com.mobiledevchtsca.movieapp.util.StateView
 import com.mobiledevchtsca.movieapp.util.initToolbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -47,6 +52,37 @@ class MovieDetailsFragment : Fragment() {
         getMovieDetails()
 
         initRecyclerCredits()
+
+        //configTabLayout()
+    }
+
+    private fun configTabLayout() {
+        val adapter = ViewPagerAdapter(requireActivity())
+        binding.viewPager.adapter = adapter
+
+        adapter.addFragment(
+            fragment = TrailersFragment(),
+            title = R.string.title_trailers_tab_layout
+        )
+
+        adapter.addFragment(
+            fragment = SimilarFragment(),
+            title = R.string.title_similares_tab_layout
+        )
+
+        adapter.addFragment(
+            fragment = ComentsFragment(),
+            title = R.string.title_comentarios_tab_layout
+        )
+
+        binding.viewPager.offscreenPageLimit = adapter.itemCount
+
+        TabLayoutMediator(
+            binding.tabs, binding.viewPager
+        ) { tab, position ->
+            tab.text = getString(adapter.getTitle(position))
+        }.attach()
+
     }
 
     private fun getMovieDetails() {
@@ -64,6 +100,7 @@ class MovieDetailsFragment : Fragment() {
                     binding.horizontalScrollView.isVisible = true
                     binding.groupButtons1.isVisible = true
                     binding.groupButtons2.isVisible = true
+                    configTabLayout()
                 }
                 is StateView.Error -> {
                     binding.progressBar.isVisible = false
