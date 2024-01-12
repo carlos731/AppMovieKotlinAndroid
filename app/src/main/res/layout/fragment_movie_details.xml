@@ -294,6 +294,10 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <!--
+                app:tabRippleColor="@android:color/transparent" -> cor da animação de toque
+                app:tabUnboundedRipple="false" -> deixa a animação retangular
+            -->
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabs"
                 android:layout_width="match_parent"
@@ -302,7 +306,13 @@
                 android:layout_marginTop="20dp"
                 android:background="@android:color/transparent"
                 android:elevation="0dp"
+                app:tabRippleColor="@android:color/transparent"
+                app:tabUnboundedRipple="false"
+                app:tabIndicatorFullWidth="true"
                 app:tabTextAppearance="@style/CustomTabLayout"
+                app:tabIndicator="@drawable/tab_indicator"
+                app:tabSelectedTextColor="@color/color_default"
+                app:tabTextColor="#9E9E9E"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/recycler_cast" />
