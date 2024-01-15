@@ -3,6 +3,7 @@ package com.mobiledevchtsca.movieapp.presenter.main.activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.isVisible
 import androidx.navigation.NavController
@@ -50,6 +51,12 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
         NavigationUI.setupWithNavController(binding.btnv, navController)
+
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            if (destination.id != R.id.onboardingFragment) {
+                window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+            }
+        }
 
         navController.addOnDestinationChangedListener { controller, destination, arg ->
             binding.btnv.isVisible =

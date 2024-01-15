@@ -8,20 +8,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
+import com.mobiledevchtsca.movieapp.MainGraphDirections
 import com.mobiledevchtsca.movieapp.R
 import com.mobiledevchtsca.movieapp.databinding.FragmentSimilarBinding
-import com.mobiledevchtsca.movieapp.domain.model.Movie
 import com.mobiledevchtsca.movieapp.presenter.main.bottombar.home.adapter.MovieAdapter
 import com.mobiledevchtsca.movieapp.presenter.main.movie_details.viewmodel.MovieDetailsViewModel
 import com.mobiledevchtsca.movieapp.presenter.main.movie_details.viewmodel.SimilarViewModel
-import com.mobiledevchtsca.movieapp.presenter.model.GenrePresentation
 import com.mobiledevchtsca.movieapp.util.StateView
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class SimilarFragment : Fragment() {
@@ -63,8 +59,12 @@ class SimilarFragment : Fragment() {
         movieAdapter = MovieAdapter(
             context = requireContext(),
             layoutInflater = R.layout.movie_genre_item,
-            movieClickListener = {
-
+            movieClickListener = { movieId ->
+                movieId?.let {
+                    val action = MainGraphDirections
+                        .actionGlobalMovieDetailsFragment(movieId)
+                    findNavController().navigate(action)
+                }
             }
         )
 

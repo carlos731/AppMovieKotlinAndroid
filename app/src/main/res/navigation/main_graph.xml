@@ -55,5 +55,7 @@
             android:name="movieId"
             app:argType="integer" />
     </fragment>
-    <action android:id="@+id/action_global_movieDetailsFragment" app:destination="@id/movieDetailsFragment" />
+    <action
+        android:id="@+id/action_global_movieDetailsFragment"
+        app:destination="@id/movieDetailsFragment" />
 </navigation>
