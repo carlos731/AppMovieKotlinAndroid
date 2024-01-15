@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,6 +20,7 @@ import com.mobiledevchtsca.movieapp.presenter.main.movie_details.adapter.CastAda
 import com.mobiledevchtsca.movieapp.presenter.main.movie_details.tabs.ComentsFragment
 import com.mobiledevchtsca.movieapp.presenter.main.movie_details.tabs.SimilarFragment
 import com.mobiledevchtsca.movieapp.presenter.main.movie_details.tabs.TrailersFragment
+import com.mobiledevchtsca.movieapp.presenter.main.movie_details.viewmodel.MovieDetailsViewModel
 import com.mobiledevchtsca.movieapp.util.StateView
 import com.mobiledevchtsca.movieapp.util.initToolbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,7 +32,8 @@ class MovieDetailsFragment : Fragment() {
 
     private val args: MovieDetailsFragmentArgs by navArgs();
 
-    private val viewModel: MovieDetailsViewModel by viewModels()
+    private val viewModel: MovieDetailsViewModel by activityViewModels()
+
     private var _binding: FragmentMovieDetailsBinding? = null
     private val binding get() = _binding!!
 
@@ -57,6 +60,8 @@ class MovieDetailsFragment : Fragment() {
     }
 
     private fun configTabLayout() {
+        viewModel.setMovieId(movieId = args.movieId)
+
         val adapter = ViewPagerAdapter(requireActivity())
         binding.viewPager.adapter = adapter
 
