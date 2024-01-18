@@ -1,14 +1,18 @@
 package com.mobiledevchtsca.movieapp.data.mapper
 
+import com.mobiledevchtsca.movieapp.data.model.AuthorDetailsResponse
 import com.mobiledevchtsca.movieapp.data.model.CountryResponse
 import com.mobiledevchtsca.movieapp.data.model.CreditResponse
 import com.mobiledevchtsca.movieapp.data.model.GenreResponse
 import com.mobiledevchtsca.movieapp.data.model.MovieResponse
+import com.mobiledevchtsca.movieapp.data.model.MovieReviewResponse
 import com.mobiledevchtsca.movieapp.data.model.PersonResponse
+import com.mobiledevchtsca.movieapp.domain.model.AuthorDetails
 import com.mobiledevchtsca.movieapp.domain.model.Country
 import com.mobiledevchtsca.movieapp.domain.model.Credit
 import com.mobiledevchtsca.movieapp.domain.model.Genre
 import com.mobiledevchtsca.movieapp.domain.model.Movie
+import com.mobiledevchtsca.movieapp.domain.model.MovieReview
 import com.mobiledevchtsca.movieapp.domain.model.Person
 import com.mobiledevchtsca.movieapp.presenter.model.GenrePresentation
 
@@ -73,5 +77,26 @@ fun PersonResponse.toDomain(): Person {
 fun CreditResponse.toDomain(): Credit {
     return Credit(
         cast = cast?.map { it.toDomain()}
+    )
+}
+
+fun AuthorDetailsResponse.toDomain(): AuthorDetails {
+    return AuthorDetails(
+        name = name,
+        username = username,
+        avatarPath = "https://image.tmdb.org/t/p/w500$avatarPath",
+        rating = rating
+    )
+}
+
+fun MovieReviewResponse.toDomain(): MovieReview {
+    return MovieReview(
+        author = author,
+        authorDetails = authorDetailsResponse?.toDomain(),
+        content = content,
+        createdAt = createdAt,
+        id = id,
+        updatedAt = updatedAt,
+        url = url
     )
 }

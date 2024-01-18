@@ -5,13 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import br.com.hellodev.movieapp.presenter.main.moviedetails.adapter.ViewPagerAdapter
+import com.mobiledevchtsca.movieapp.presenter.main.movie_details.adapter.ViewPagerAdapter
 import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayoutMediator
 import com.mobiledevchtsca.movieapp.R
@@ -95,21 +94,14 @@ class MovieDetailsFragment : Fragment() {
         viewModel.getMovieDetails(movieId = args.movieId).observe(viewLifecycleOwner) { stateView ->
             when (stateView) {
                 is StateView.Loading -> {
-                    binding.progressBar.isVisible = true
-                    binding.horizontalScrollView.isVisible = false
-                    binding.groupButtons1.isVisible = false
-                    binding.groupButtons2.isVisible = false
+
                 }
                 is StateView.Success -> {
-                    binding.progressBar.isVisible = false
                     configData(movie = stateView.data)
-                    binding.horizontalScrollView.isVisible = true
-                    binding.groupButtons1.isVisible = true
-                    binding.groupButtons2.isVisible = true
+
                     configTabLayout()
                 }
                 is StateView.Error -> {
-                    binding.progressBar.isVisible = false
                 }
             }
         }
@@ -119,10 +111,9 @@ class MovieDetailsFragment : Fragment() {
         viewModel.getCredits(movieId = args.movieId).observe(viewLifecycleOwner) { stateView ->
             when (stateView) {
                 is StateView.Loading -> {
-                    binding.progressCast.isVisible = true
+
                 }
                 is StateView.Success -> {
-                    binding.progressCast.isVisible = false
                     castAdapter.submitList(stateView.data?.cast)
                 }
                 is StateView.Error -> {

@@ -274,26 +274,6 @@
                 tools:itemCount="1"
                 tools:listitem="@layout/cast_item" />
 
-            <ProgressBar
-                android:id="@+id/progress_cast"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="@+id/recycler_cast"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/recycler_cast"
-                tools:visibility="visible" />
-
-            <ProgressBar
-                android:id="@+id/progress_bar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
             <!--
                 app:tabRippleColor="@android:color/transparent" -> cor da animação de toque
                 app:tabUnboundedRipple="false" -> deixa a animação retangular
