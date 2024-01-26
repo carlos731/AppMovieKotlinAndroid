@@ -19,6 +19,7 @@ import com.mobiledevchtsca.movieapp.presenter.main.moviedetails.comments.Coments
 import com.mobiledevchtsca.movieapp.presenter.main.moviedetails.similar.SimilarFragment
 import com.mobiledevchtsca.movieapp.presenter.main.moviedetails.trailers.TrailersFragment
 import com.mobiledevchtsca.movieapp.util.StateView
+import com.mobiledevchtsca.movieapp.util.ViewPager2ViewHeightAnimator
 import com.mobiledevchtsca.movieapp.util.initToolbar
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
@@ -60,7 +61,11 @@ class MovieDetailsFragment : Fragment() {
         viewModel.setMovieId(movieId = args.movieId)
 
         val adapter = ViewPagerAdapter(requireActivity())
-        binding.viewPager.adapter = adapter
+        val mViewPager = ViewPager2ViewHeightAnimator()
+
+        mViewPager.viewPager2 = binding.viewPager
+        mViewPager.viewPager2?.adapter = adapter
+
 
         adapter.addFragment(
             fragment = TrailersFragment(),
@@ -79,11 +84,13 @@ class MovieDetailsFragment : Fragment() {
 
         binding.viewPager.offscreenPageLimit = adapter.itemCount
 
-        TabLayoutMediator(
-            binding.tabs, binding.viewPager
-        ) { tab, position ->
-            tab.text = getString(adapter.getTitle(position))
-        }.attach()
+        mViewPager.viewPager2?.let { viewPager2 ->
+            TabLayoutMediator(
+                binding.tabs, viewPager2
+            ) { tab, position ->
+                tab.text = getString(adapter.getTitle(position))
+            }.attach()
+        }
 
     }
 
