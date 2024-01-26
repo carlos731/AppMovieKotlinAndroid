@@ -1,4 +1,4 @@
-package com.mobiledevchtsca.movieapp.presenter.main.movie_details.tabs
+package com.mobiledevchtsca.movieapp.presenter.main.moviedetails.similar
 
 import android.os.Bundle
 import android.util.Log
@@ -14,8 +14,7 @@ import com.mobiledevchtsca.movieapp.MainGraphDirections
 import com.mobiledevchtsca.movieapp.R
 import com.mobiledevchtsca.movieapp.databinding.FragmentSimilarBinding
 import com.mobiledevchtsca.movieapp.presenter.main.bottombar.home.adapter.MovieAdapter
-import com.mobiledevchtsca.movieapp.presenter.main.movie_details.viewmodel.MovieDetailsViewModel
-import com.mobiledevchtsca.movieapp.presenter.main.movie_details.viewmodel.SimilarViewModel
+import com.mobiledevchtsca.movieapp.presenter.main.moviedetails.details.MovieDetailsViewModel
 import com.mobiledevchtsca.movieapp.util.StateView
 import dagger.hilt.android.AndroidEntryPoint
 

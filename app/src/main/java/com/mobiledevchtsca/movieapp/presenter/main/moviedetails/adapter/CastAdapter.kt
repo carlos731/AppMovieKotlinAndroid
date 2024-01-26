@@ -1,4 +1,4 @@
-package com.mobiledevchtsca.movieapp.presenter.main.movie_details.adapter
+package com.mobiledevchtsca.movieapp.presenter.main.moviedetails.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

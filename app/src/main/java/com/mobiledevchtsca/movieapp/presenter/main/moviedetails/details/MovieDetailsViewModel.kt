@@ -1,4 +1,4 @@
-package com.mobiledevchtsca.movieapp.presenter.main.movie_details.viewmodel
+package com.mobiledevchtsca.movieapp.presenter.main.moviedetails.details
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
