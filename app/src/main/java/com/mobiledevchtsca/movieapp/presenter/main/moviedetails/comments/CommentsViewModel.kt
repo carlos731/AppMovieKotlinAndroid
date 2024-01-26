@@ -6,10 +6,12 @@ import com.mobiledevchtsca.movieapp.BuildConfig
 import com.mobiledevchtsca.movieapp.domain.usecase.movie.GetMovieReviewsUseCase
 import com.mobiledevchtsca.movieapp.util.Constants
 import com.mobiledevchtsca.movieapp.util.StateView
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import retrofit2.HttpException
 import javax.inject.Inject
 
+@HiltViewModel
 class CommentsViewModel @Inject constructor (
     private val getMovieReviewsUseCase: GetMovieReviewsUseCase
 ): ViewModel() {
