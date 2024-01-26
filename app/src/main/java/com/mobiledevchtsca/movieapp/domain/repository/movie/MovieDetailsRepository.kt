@@ -2,6 +2,7 @@ package com.mobiledevchtsca.movieapp.domain.repository.movie
 
 import com.mobiledevchtsca.movieapp.data.model.CreditResponse
 import com.mobiledevchtsca.movieapp.data.model.MovieResponse
+import com.mobiledevchtsca.movieapp.data.model.MovieReviewResponse
 
 interface MovieDetailsRepository {
 
@@ -22,5 +23,11 @@ interface MovieDetailsRepository {
         language: String?,
         movieId: Int?
     ): List<MovieResponse>
+
+    suspend fun getMovieReviews(
+        apiKey: String?,
+        language: String?,
+        movieId: Int?
+    ): List<MovieReviewResponse>
 
 }

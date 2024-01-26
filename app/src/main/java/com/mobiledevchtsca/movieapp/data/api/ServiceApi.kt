@@ -5,6 +5,7 @@ import com.mobiledevchtsca.movieapp.data.model.CreditResponse
 import com.mobiledevchtsca.movieapp.data.model.GenreResponse
 import com.mobiledevchtsca.movieapp.data.model.GenresResponse
 import com.mobiledevchtsca.movieapp.data.model.MovieResponse
+import com.mobiledevchtsca.movieapp.data.model.MovieReviewResponse
 import com.mobiledevchtsca.movieapp.data.model.PersonResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -51,6 +52,13 @@ interface ServiceApi {
         @Path("movie_id") movieId: Int?,
         @Query("api_key") apiKey: String?,
         @Query("language") language: String?
-    ):  BasePaginationRemote<List<MovieResponse>>
+    ): BasePaginationRemote<List<MovieResponse>>
+
+    @GET("movie/{movie_id}/reviews")
+    suspend fun getMovieReviews(
+        @Path("movie_id") movieId: Int?,
+        @Query("api_key") apiKey: String?,
+        @Query("language") language: String?
+    ): BasePaginationRemote<List<MovieReviewResponse>>
 
 }

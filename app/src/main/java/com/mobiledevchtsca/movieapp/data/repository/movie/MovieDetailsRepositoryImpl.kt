@@ -4,6 +4,7 @@ import com.mobiledevchtsca.movieapp.data.api.ServiceApi
 import com.mobiledevchtsca.movieapp.data.model.CreditResponse
 import com.mobiledevchtsca.movieapp.data.model.GenresResponse
 import com.mobiledevchtsca.movieapp.data.model.MovieResponse
+import com.mobiledevchtsca.movieapp.data.model.MovieReviewResponse
 import com.mobiledevchtsca.movieapp.domain.repository.movie.MovieDetailsRepository
 import com.mobiledevchtsca.movieapp.domain.repository.movie.MovieRepository
 import javax.inject.Inject
@@ -41,6 +42,18 @@ class MovieDetailsRepositoryImpl @Inject constructor(
         movieId: Int?
     ): List<MovieResponse> {
         return serviceApi.getSimilar(
+            movieId = movieId,
+            apiKey = apiKey,
+            language = language,
+        ).results ?: emptyList()
+    }
+
+    override suspend fun getMovieReviews(
+        apiKey: String?,
+        language: String?,
+        movieId: Int?
+    ): List<MovieReviewResponse> {
+        return serviceApi.getMovieReviews(
             movieId = movieId,
             apiKey = apiKey,
             language = language,
