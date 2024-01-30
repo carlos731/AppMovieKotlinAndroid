@@ -91,6 +91,4 @@ dependencies {
     // https://github.com/Ferfalk/SimpleSearchView
     implementation 'com.github.Ferfalk:SimpleSearchView:0.2.1'
 
-    // "Aula 327 - Habilitando Novo Visual do Android Studio"
-
 }
