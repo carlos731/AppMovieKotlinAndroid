@@ -92,6 +92,7 @@ dependencies {
     implementation 'com.github.Ferfalk:SimpleSearchView:0.2.1'
 
     // Room: https://developer.android.com/jetpack/androidx/releases/room?hl=pt-br
+    implementation "androidx.room:room-ktx:2.6.0"
     implementation "androidx.room:room-runtime:2.6.0"
     annotationProcessor "androidx.room:room-compiler:2.6.0"
 

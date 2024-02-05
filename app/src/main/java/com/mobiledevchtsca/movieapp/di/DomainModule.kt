@@ -1,8 +1,10 @@
 package com.mobiledevchtsca.movieapp.di
 
+import com.mobiledevchtsca.movieapp.data.local.repository.MovieLocalRepositoryImpl
 import com.mobiledevchtsca.movieapp.data.repository.auth.FirebaseAuthenticationImpl
 import com.mobiledevchtsca.movieapp.data.repository.movie.MovieDetailsRepositoryImpl
 import com.mobiledevchtsca.movieapp.data.repository.movie.MovieRepositoryImpl
+import com.mobiledevchtsca.movieapp.domain.local.repository.MovieLocalRepository
 import com.mobiledevchtsca.movieapp.domain.repository.auth.FirebaseAuthentication
 import com.mobiledevchtsca.movieapp.domain.repository.movie.MovieDetailsRepository
 import com.mobiledevchtsca.movieapp.domain.repository.movie.MovieRepository
@@ -30,5 +32,9 @@ abstract class DomainModule {
         movieRepositoryDetailsImpl: MovieDetailsRepositoryImpl
     ): MovieDetailsRepository
 
+    @Binds
+    abstract fun bindsMovieLocalRepositoryImpl(
+        movieLocalRepositoryImpl: MovieLocalRepositoryImpl
+    ): MovieLocalRepository
 
 }

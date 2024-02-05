@@ -1,5 +1,6 @@
 package com.mobiledevchtsca.movieapp.data.mapper
 
+import com.mobiledevchtsca.movieapp.data.local.entity.MovieEntity
 import com.mobiledevchtsca.movieapp.data.model.AuthorDetailsResponse
 import com.mobiledevchtsca.movieapp.data.model.CountryResponse
 import com.mobiledevchtsca.movieapp.data.model.CreditResponse
@@ -98,5 +99,24 @@ fun MovieReviewResponse.toDomain(): MovieReview {
         id = id,
         updatedAt = updatedAt,
         url = url
+    )
+}
+
+fun Movie.toEntity(): MovieEntity {
+    return MovieEntity(
+        id = id,
+        title = title,
+        poster = posterPath,
+        runtime = runtime,
+        insertion = System.currentTimeMillis()
+    )
+}
+
+fun MovieEntity.toDomain(): Movie {
+    return Movie(
+        id = id,
+        title = title,
+        posterPath = poster,
+        runtime = runtime,
     )
 }
