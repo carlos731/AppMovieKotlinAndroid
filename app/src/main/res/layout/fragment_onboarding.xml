@@ -35,7 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
         android:layout_marginBottom="32dp"
-        android:theme="@style/ThemeButton"
+        android:theme="@style/ThemePrimaryButton"
         android:text="Iniciar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
