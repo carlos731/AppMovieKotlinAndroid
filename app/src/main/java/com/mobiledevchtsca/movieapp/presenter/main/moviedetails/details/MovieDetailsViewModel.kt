@@ -5,6 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.mobiledevchtsca.movieapp.BuildConfig
+import com.mobiledevchtsca.movieapp.domain.local.usecase.InsertMovieUseCase
+import com.mobiledevchtsca.movieapp.domain.model.Movie
 import com.mobiledevchtsca.movieapp.domain.usecase.movie.GetCreditsUseCase
 import com.mobiledevchtsca.movieapp.domain.usecase.movie.GetMovieDetailsUseCase
 import com.mobiledevchtsca.movieapp.util.Constants
@@ -17,7 +19,8 @@ import javax.inject.Inject
 @HiltViewModel
 class MovieDetailsViewModel @Inject constructor(
     private val getMovieDetailsUseCase: GetMovieDetailsUseCase,
-    private val getCreditsUseCase: GetCreditsUseCase
+    private val getCreditsUseCase: GetCreditsUseCase,
+    private val insertMovieUseCase: InsertMovieUseCase
 ): ViewModel() {
 
     // https://developer.android.com/codelabs/basic-android-kotlin-training-shared-viewmodel?hl=pt-br#3
@@ -60,6 +63,20 @@ class MovieDetailsViewModel @Inject constructor(
         } catch (e: HttpException) {
             e.printStackTrace()
             emit(StateView.Error(message = e.message))
+        } catch (e: Exception) {
+            e.printStackTrace()
+            emit(StateView.Error(message = e.message))
+        }
+    }
+
+    fun insertMovie(movie: Movie) = liveData(Dispatchers.IO) {
+        try {
+            emit(StateView.Loading())
+
+            insertMovieUseCase(movie)
+
+            emit(StateView.Success(Unit))
+
         } catch (e: Exception) {
             e.printStackTrace()
             emit(StateView.Error(message = e.message))
