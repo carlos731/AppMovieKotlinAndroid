@@ -7,9 +7,11 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.ferfalk.simplesearchview.SimpleSearchView
 import com.mobiledevchtsca.movieapp.MainGraphDirections
 import com.mobiledevchtsca.movieapp.R
@@ -28,6 +30,8 @@ class DownloadFragment : Fragment() {
 
     private val args: MovieGenreFragmentArgs by navArgs()
     private lateinit var mAdapter: DownloadMovieAdapter
+
+    private val viewModel: DownloadViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,7 +53,21 @@ class DownloadFragment : Fragment() {
 
         initRecycler()
 
+        initObservers()
+
+        getData()
+
         initSearchView();
+    }
+
+    private fun getData() {
+        viewModel.getMovies()
+    }
+
+    private fun initObservers() {
+        viewModel.movieList.observe(viewLifecycleOwner) { movies ->
+            mAdapter.submitList(movies)
+        }
     }
 
     private fun initRecycler() {
@@ -68,7 +86,7 @@ class DownloadFragment : Fragment() {
         )
 
         with(binding.rvMovies) {
-            layoutManager = GridLayoutManager(requireContext(), 2)
+            layoutManager = LinearLayoutManager(requireContext())
             setHasFixedSize(true)
             adapter = mAdapter
         }

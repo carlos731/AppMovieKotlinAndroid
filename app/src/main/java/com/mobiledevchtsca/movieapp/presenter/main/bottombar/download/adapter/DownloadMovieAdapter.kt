@@ -12,6 +12,8 @@ import com.bumptech.glide.Glide
 import com.mobiledevchtsca.movieapp.R
 import com.mobiledevchtsca.movieapp.databinding.MovieDownloadItemBinding
 import com.mobiledevchtsca.movieapp.domain.model.Movie
+import com.mobiledevchtsca.movieapp.util.calculateFileSize
+import com.mobiledevchtsca.movieapp.util.calculateMovieTime
 
 class DownloadMovieAdapter(
     private val context: Context,
@@ -53,8 +55,8 @@ class DownloadMovieAdapter(
             .into(holder.binding.ivMovie)
 
         holder.binding.textMovie.text = movie.title
-        holder.binding.textDuration.text = movie.runtime.toString()
-        holder.binding.textSize.text = movie.runtime.toString()
+        holder.binding.textDuration.text = movie.runtime?.calculateMovieTime()
+        holder.binding.textSize.text = movie.runtime?.toDouble()?.calculateFileSize()
         holder.binding.ibDelete.setOnClickListener { deleteClickListener(movie.id) }
 
         holder.itemView.setOnClickListener { detailsClickListener(movie.id) }
