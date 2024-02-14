@@ -31,7 +31,17 @@
         <item name="android:textAllCaps">false</item>
         <item name="android:textColor">@color/color_default</item>
         <item name="android:fontFamily">@font/urbanist_700</item>
-        <item name="android:padding">16dp</item>
+        <item name="android:padding">12dp</item>
+        <item name="android:stateListAnimator">@null</item>
+    </style>
+
+    <style name="ThemeBottomSheetButton" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:background">@drawable/bg_button</item>
+        <item name="android:backgroundTint">@color/color_default</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/urbanist_700</item>
+        <item name="android:padding">12dp</item>
         <item name="android:stateListAnimator">@null</item>
     </style>
 
