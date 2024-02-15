@@ -7,6 +7,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -73,6 +74,7 @@ class DownloadFragment : Fragment() {
     private fun initObservers() {
         viewModel.movieList.observe(viewLifecycleOwner) { movies ->
             mAdapter.submitList(movies)
+            emptyState(empty = movies.isEmpty())
         }
     }
 
@@ -164,6 +166,11 @@ class DownloadFragment : Fragment() {
         val item = menu.findItem(R.id.action_search)
         binding.simpleSearchView.setMenuItem(item)
         super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    private fun emptyState(empty: Boolean) {
+        binding.rvMovies.isVisible = !empty
+        binding.layoutEmpty.isVisible = empty
     }
 
     /*
