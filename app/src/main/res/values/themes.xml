@@ -106,6 +106,14 @@
         <!--<item name="android:windowMinWidthMinor">80%</item>-->
     </style>
 
+    <style name="BottomSheetDialog" parent="Theme.Material3.DayNight.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/bottomSheetStyleWrapper</item>
+    </style>
+
+    <style name="bottomSheetStyleWrapper" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
     <!--
     <style name="CustomTabLayout" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:textSize">14sp</item>
