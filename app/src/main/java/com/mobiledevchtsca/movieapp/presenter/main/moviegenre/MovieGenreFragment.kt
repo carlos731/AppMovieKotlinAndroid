@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
@@ -18,10 +19,13 @@ import com.mobiledevchtsca.movieapp.MainGraphDirections
 import com.mobiledevchtsca.movieapp.R
 import com.mobiledevchtsca.movieapp.databinding.FragmentMovieGenreBinding
 import com.mobiledevchtsca.movieapp.presenter.main.bottombar.home.adapter.MovieAdapter
+import com.mobiledevchtsca.movieapp.presenter.main.moviegenre.adapter.MoviePagingAdapter
 import com.mobiledevchtsca.movieapp.util.StateView
 import com.mobiledevchtsca.movieapp.util.hideKeyboard
 import com.mobiledevchtsca.movieapp.util.initToolbar
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
@@ -33,7 +37,7 @@ class MovieGenreFragment : Fragment() {
     private val viewModel: MovieGenreViewModel by viewModels()
 
     private val args: MovieGenreFragmentArgs by navArgs()
-    private lateinit var movieAdapter: MovieAdapter
+    private lateinit var moviePagingAdapter: MoviePagingAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,9 +67,8 @@ class MovieGenreFragment : Fragment() {
     }
 
     private fun initRecycler() {
-        movieAdapter = MovieAdapter(
+        moviePagingAdapter = MoviePagingAdapter(
             context = requireContext(),
-            layoutInflater = R.layout.movie_genre_item,
             movieClickListener = { movieId ->
                 movieId?.let {
                     val action = MainGraphDirections
@@ -78,7 +81,7 @@ class MovieGenreFragment : Fragment() {
         with(binding.recyclerMovies) {
             layoutManager = GridLayoutManager(requireContext(), 2)
             setHasFixedSize(true)
-            adapter = movieAdapter
+            adapter = moviePagingAdapter
         }
     }
 
@@ -123,7 +126,15 @@ class MovieGenreFragment : Fragment() {
         })
     }
 
-    private fun getMoviesByGenre() {
+    private fun getMoviesByGenre(forceRequest: Boolean = false) {
+        lifecycleScope.launch {
+            viewModel.getMoviesByGenre(genreId = args.genreId, forceRequest = forceRequest)
+            viewModel.movieList.collectLatest { pagingData ->
+                moviePagingAdapter.submitData(viewLifecycleOwner.lifecycle ,pagingData)
+            }
+        }
+
+        /* Desnecessário após a implementação do Paging3
         viewModel.getMoviesByGenre(args.genreId).observe(viewLifecycleOwner) { stateView ->
             when(stateView) {
                 is StateView.Loading -> {
@@ -132,7 +143,7 @@ class MovieGenreFragment : Fragment() {
                 }
                 is StateView.Success -> {
                     binding.progressBar.isVisible = false
-                    movieAdapter.submitList(stateView.data)
+                    moviePagingAdapter.submitList(stateView.data)
                     binding.recyclerMovies.isVisible = true
                 }
                 is StateView.Error -> {
@@ -140,6 +151,7 @@ class MovieGenreFragment : Fragment() {
                 }
             }
         }
+        */
     }
 
     private fun searchMovies(query: String?) {
@@ -151,7 +163,7 @@ class MovieGenreFragment : Fragment() {
                 }
                 is StateView.Success -> {
                     binding.progressBar.isVisible = false
-                    movieAdapter.submitList(stateView.data)
+                    getMoviesByGenre(forceRequest = true)
                     binding.recyclerMovies.isVisible = true
                 }
                 is StateView.Error -> {

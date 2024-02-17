@@ -2,7 +2,9 @@ package com.mobiledevchtsca.movieapp.presenter.main.moviegenre
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
+import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.mobiledevchtsca.movieapp.BuildConfig
 import com.mobiledevchtsca.movieapp.domain.model.Movie
 import com.mobiledevchtsca.movieapp.domain.usecase.movie.GetMoviesByGenreUseCase
@@ -13,6 +15,8 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import javax.inject.Inject
 
@@ -27,14 +31,16 @@ class MovieGenreViewModel @Inject constructor(
 
     private var currentGenreId: Int? = null
 
-    fun initializeMoviesByGenre(genreId: Int?, forceRequest: Boolean) {
+    fun getMoviesByGenre(genreId: Int?, forceRequest: Boolean) = viewModelScope.launch {
         if (genreId != currentGenreId || forceRequest) {
             currentGenreId = genreId
             getMoviesByGenreUseCase(
                 apiKey = BuildConfig.API_KEY,
                 language = Constants.Movie.LANGUAGE,
                 genreId = genreId
-            )
+            ).cachedIn(viewModelScope).collectLatest {
+                _movieList.emit(it)
+            }
         }
     }
 
