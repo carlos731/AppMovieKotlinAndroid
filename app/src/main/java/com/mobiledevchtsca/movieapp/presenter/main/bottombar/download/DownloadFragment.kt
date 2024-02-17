@@ -7,6 +7,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -56,7 +57,7 @@ class DownloadFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initToolbar(toolbar = binding.toolbar)
+        initToolbar(toolbar = binding.toolbar, showIconNavigation = false)
 
         initRecycler()
 
@@ -64,7 +65,7 @@ class DownloadFragment : Fragment() {
 
         getData()
 
-        initSearchView();
+        initListeners()
     }
 
     private fun getData() {
@@ -76,6 +77,17 @@ class DownloadFragment : Fragment() {
             mAdapter.submitList(movies)
             emptyState(empty = movies.isEmpty())
         }
+
+        viewModel.movieSearchList.observe(viewLifecycleOwner) { movies ->
+            mAdapter.submitList(movies)
+            emptyState(empty = movies.isEmpty())
+        }
+    }
+
+    private fun initListeners() {
+        initSearchView()
+
+        onBackPressed()
     }
 
     private fun initRecycler() {
@@ -103,16 +115,14 @@ class DownloadFragment : Fragment() {
     private fun initSearchView() {
         binding.simpleSearchView.setOnQueryTextListener(object : SimpleSearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-                //Log.d("SimpleSearchView", "Submit:$query")
-                hideKeyboard()
-                if (query.isNotEmpty()) {
-                    //searchMovies(query)
-                }
-                return true
+                return false;
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
-                return false
+                if (newText.isNotBlank() || newText.isEmpty()) {
+                    viewModel.searchMovie(newText)
+                }
+                return true
             }
 
             override fun onQueryTextCleared(): Boolean {
@@ -125,7 +135,7 @@ class DownloadFragment : Fragment() {
             }
 
             override fun onSearchViewClosed() {
-                //getMoviesByGenre()
+                viewModel.getMovies()
             }
 
             override fun onSearchViewShownAnimation() {
@@ -159,6 +169,19 @@ class DownloadFragment : Fragment() {
 
         bottomSheetDialog.setContentView(bottomSheetBinding.root)
         bottomSheetDialog.show();
+    }
+
+    private fun onBackPressed() {
+        requireActivity().onBackPressedDispatcher
+            .addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true){
+                override fun handleOnBackPressed() {
+                    if (binding.simpleSearchView.isVisible) {
+                        binding.simpleSearchView.closeSearch()
+                    } else {
+                        findNavController().popBackStack()
+                    }
+                }
+            })
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
