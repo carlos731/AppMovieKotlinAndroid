@@ -36,7 +36,7 @@ class SearchViewModel @Inject constructor(
                     query = query
                 )
 
-                _movieList.postValue(movies)
+                //_movieList.postValue(movies)
                 _searchState.postValue(StateView.Success(Unit))
 
             } catch (e: HttpException) {

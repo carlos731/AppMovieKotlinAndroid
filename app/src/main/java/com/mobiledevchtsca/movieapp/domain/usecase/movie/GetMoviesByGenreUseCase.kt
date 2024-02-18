@@ -17,16 +17,6 @@ class GetMoviesByGenreUseCase @Inject constructor(
     private val repository: MovieRepository
 ) {
 
-    /* Desnecessário após o uso do Paging3
-    suspend operator fun invoke(apiKey: String, language: String?, genreId: Int?): List<Movie> {
-        return repository.getMoviesByGenre(
-            apiKey = apiKey,
-            language = language,
-            genreId = genreId,
-        ).map { it.toDomain() }
-    }
-    */
-
     operator fun invoke(
         apiKey: String,
         language: String?,
@@ -49,5 +39,15 @@ class GetMoviesByGenreUseCase @Inject constructor(
             movieResponse.toDomain()
         }
     }
+
+    /* Desnecessário após o uso do Paging3
+    suspend operator fun invoke(apiKey: String, language: String?, genreId: Int?): List<Movie> {
+        return repository.getMoviesByGenre(
+            apiKey = apiKey,
+            language = language,
+            genreId = genreId,
+        ).map { it.toDomain() }
+    }
+    */
 
 }

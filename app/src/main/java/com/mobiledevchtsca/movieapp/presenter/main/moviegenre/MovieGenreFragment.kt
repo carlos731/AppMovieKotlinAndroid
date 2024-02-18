@@ -202,6 +202,13 @@ class MovieGenreFragment : Fragment() {
     }
 
     private fun searchMovies(query: String?) {
+        lifecycleScope.launch {
+            viewModel.searchMovies(query).collectLatest {pagingData ->
+                moviePagingAdapter.submitData(viewLifecycleOwner.lifecycle ,pagingData)
+            }
+        }
+
+        /*
         viewModel.searchMovies(query).observe(viewLifecycleOwner) { stateView ->
             when(stateView) {
                 is StateView.Loading -> {
@@ -224,6 +231,7 @@ class MovieGenreFragment : Fragment() {
                 }
             }
         }
+        */
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

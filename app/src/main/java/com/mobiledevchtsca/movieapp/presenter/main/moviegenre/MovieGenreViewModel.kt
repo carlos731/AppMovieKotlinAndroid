@@ -13,6 +13,7 @@ import com.mobiledevchtsca.movieapp.util.Constants
 import com.mobiledevchtsca.movieapp.util.StateView
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
@@ -44,6 +45,38 @@ class MovieGenreViewModel @Inject constructor(
         }
     }
 
+    fun searchMovies(query: String?): Flow<PagingData<Movie>> {
+        return searchMovieUseCase(
+            apiKey = BuildConfig.API_KEY,
+            language = Constants.Movie.LANGUAGE,
+            query = query
+        ).cachedIn(viewModelScope)
+    }
+
+    /* Desnecessário após o uso do Paging3
+    fun searchMovies(query: String?) = liveData(Dispatchers.IO) {
+        try {
+            emit(StateView.Loading())
+
+            val movies = searchMovieUseCase.invoke(
+                apiKey = BuildConfig.API_KEY,
+                language = Constants.Movie.LANGUAGE,
+                query = query
+            )
+
+            emit(StateView.Success(movies))
+
+        } catch (e: HttpException) {
+            e.printStackTrace()
+            emit(StateView.Error(message = e.message))
+        } catch (e: Exception) {
+            e.printStackTrace()
+            emit(StateView.Error(message = e.message))
+        }
+    }
+    */
+
+
     /* Desnecessário após o uso do Paging3
     fun getMoviesByGenre(genreId: Int?) = liveData(Dispatchers.IO) {
         try {
@@ -67,24 +100,4 @@ class MovieGenreViewModel @Inject constructor(
     }
     */
 
-    fun searchMovies(query: String?) = liveData(Dispatchers.IO) {
-        try {
-            emit(StateView.Loading())
-
-            val movies = searchMovieUseCase.invoke(
-                apiKey = BuildConfig.API_KEY,
-                language = Constants.Movie.LANGUAGE,
-                query = query
-            )
-
-            emit(StateView.Success(movies))
-
-        } catch (e: HttpException) {
-            e.printStackTrace()
-            emit(StateView.Error(message = e.message))
-        } catch (e: Exception) {
-            e.printStackTrace()
-            emit(StateView.Error(message = e.message))
-        }
-    }
 }
