@@ -58,6 +58,31 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appbar" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <include layout="@layout/placeholder_movie_item" />
+            <include layout="@layout/placeholder_movie_item" />
+            <include layout="@layout/placeholder_movie_item" />
+            <include layout="@layout/placeholder_movie_item" />
+
+        </LinearLayout>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_movies"
         android:layout_width="match_parent"
@@ -70,9 +95,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appbar"
         tools:itemCount="1"
-        tools:listitem="@layout/movie_genre_item"
-        tools:visibility="visible" />
+        tools:listitem="@layout/movie_genre_item" />
 
+    <!-- Comentado após o uso do FacebookShimmer
     <ProgressBar
         android:id="@+id/progress_bar"
         android:layout_width="wrap_content"
@@ -81,6 +106,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appbar" />
-
+    -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
