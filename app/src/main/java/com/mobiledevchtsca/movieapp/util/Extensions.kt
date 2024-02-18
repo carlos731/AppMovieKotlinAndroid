@@ -1,12 +1,16 @@
 package com.mobiledevchtsca.movieapp.util
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.google.android.material.snackbar.Snackbar
 import com.mobiledevchtsca.movieapp.R
+import kotlinx.coroutines.NonCancellable.start
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -102,4 +106,18 @@ fun Int.calculateMovieTime(): String {
     val hours = this / 60
     val minutes = this % 60
     return "${hours}h ${minutes}m"
+}
+
+fun Context.circularProgressDrawable(): Drawable {
+    return CircularProgressDrawable(this).apply {
+        strokeWidth = 12f
+        centerRadius = 60f
+        setColorSchemeColors(
+            ContextCompat.getColor(
+                this@circularProgressDrawable,
+                R.color.color_default
+            )
+        )
+        start()
+    }
 }

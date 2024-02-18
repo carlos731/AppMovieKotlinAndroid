@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mobiledevchtsca.movieapp.databinding.MovieGenreItemBinding
 import com.mobiledevchtsca.movieapp.domain.model.Movie
+import com.mobiledevchtsca.movieapp.util.circularProgressDrawable
 
 class MoviePagingAdapter(
     private val context: Context,
@@ -45,6 +46,7 @@ class MoviePagingAdapter(
         Glide
             .with(context)
             .load("https://image.tmdb.org/t/p/w500${movie?.posterPath}")
+            .placeholder(context.circularProgressDrawable())
             //.error(R.drawable.movie)
             .into(holder.binding.movieImage)
 

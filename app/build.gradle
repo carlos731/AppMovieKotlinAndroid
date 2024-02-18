@@ -102,4 +102,7 @@ dependencies {
     // FacebookShimmer: https://github.com/facebookarchive/shimmer-android
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
 
+    // https://developer.android.com/jetpack/androidx/releases/swiperefreshlayout#groovy
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+
 }
