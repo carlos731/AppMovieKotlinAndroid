@@ -31,12 +31,11 @@ class SearchViewModel @Inject constructor(
                 _searchState.postValue(StateView.Loading())
 
                 val movies = searchMovieUseCase.invoke(
-                    apiKey = BuildConfig.API_KEY,
-                    language = Constants.Movie.LANGUAGE,
                     query = query
                 )
 
-                //_movieList.postValue(movies)
+                // Com esse codigo comentado a o fragmento do bottom downloads não funciona a pesquisa!
+                //_movieList.postValue(movies) // Comentado na aula 352, no qual essa linha da erro e é prometido a solução em aulas seguintes
                 _searchState.postValue(StateView.Success(Unit))
 
             } catch (e: HttpException) {

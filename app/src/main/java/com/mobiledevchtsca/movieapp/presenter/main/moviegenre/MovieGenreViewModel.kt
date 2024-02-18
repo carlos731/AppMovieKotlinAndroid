@@ -36,8 +36,6 @@ class MovieGenreViewModel @Inject constructor(
         if (genreId != currentGenreId || forceRequest) {
             currentGenreId = genreId
             getMoviesByGenreUseCase(
-                apiKey = BuildConfig.API_KEY,
-                language = Constants.Movie.LANGUAGE,
                 genreId = genreId
             ).cachedIn(viewModelScope).collectLatest {
                 _movieList.emit(it)
@@ -47,8 +45,6 @@ class MovieGenreViewModel @Inject constructor(
 
     fun searchMovies(query: String?): Flow<PagingData<Movie>> {
         return searchMovieUseCase(
-            apiKey = BuildConfig.API_KEY,
-            language = Constants.Movie.LANGUAGE,
             query = query
         ).cachedIn(viewModelScope)
     }

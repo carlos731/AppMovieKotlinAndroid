@@ -9,6 +9,7 @@ import java.util.concurrent.TimeUnit
 
 class ServiceProvider {
 
+    /* Desnecessário após a aula 353, com o uso de interceptor no retrofit no DataModule.kt
     private val client = OkHttpClient.Builder()
         .connectTimeout(30, TimeUnit.SECONDS)
         .readTimeout(30, TimeUnit.SECONDS)
@@ -24,5 +25,5 @@ class ServiceProvider {
         .build()
 
     fun <API> createService(apiClass: Class<API>): API = retrofit.create(apiClass)
-
+    */
 }

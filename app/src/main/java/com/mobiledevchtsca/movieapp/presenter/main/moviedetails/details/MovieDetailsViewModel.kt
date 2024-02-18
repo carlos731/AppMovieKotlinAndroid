@@ -32,8 +32,6 @@ class MovieDetailsViewModel @Inject constructor(
             emit(StateView.Loading())
 
             val result = getMovieDetailsUseCase.invoke(
-                apiKey = BuildConfig.API_KEY,
-                language = Constants.Movie.LANGUAGE,
                 movieId = movieId
             )
 
@@ -53,8 +51,6 @@ class MovieDetailsViewModel @Inject constructor(
             emit(StateView.Loading())
 
             val result = getCreditsUseCase(
-                apiKey = BuildConfig.API_KEY,
-                language = Constants.Movie.LANGUAGE,
                 movieId = movieId
             )
 

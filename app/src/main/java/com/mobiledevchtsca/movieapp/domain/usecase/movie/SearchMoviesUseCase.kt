@@ -27,8 +27,6 @@ class SearchMoviesUseCase @Inject constructor(
     */
 
     operator fun invoke(
-        apiKey: String,
-        language: String?,
         query: String?
     ): Flow<PagingData<Movie>> = Pager(
         config = PagingConfig(
@@ -38,8 +36,6 @@ class SearchMoviesUseCase @Inject constructor(
         ),
         pagingSourceFactory = {
             repository.searchMovies(
-                apiKey = apiKey,
-                language = language,
                 query = query
             )
         }
