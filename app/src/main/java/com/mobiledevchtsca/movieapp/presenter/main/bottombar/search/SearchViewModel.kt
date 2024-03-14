@@ -4,12 +4,15 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.mobiledevchtsca.movieapp.BuildConfig
 import com.mobiledevchtsca.movieapp.domain.model.Movie
 import com.mobiledevchtsca.movieapp.domain.usecase.movie.SearchMoviesUseCase
 import com.mobiledevchtsca.movieapp.util.Constants
 import com.mobiledevchtsca.movieapp.util.StateView
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import javax.inject.Inject
@@ -19,12 +22,22 @@ class SearchViewModel @Inject constructor(
     private val searchMovieUseCase: SearchMoviesUseCase
 ): ViewModel() {
 
+    /* // Desnecessário após o uso do paging3, e shimmer
     private val _movieList = MutableLiveData<List<Movie>>()
     val movieList: LiveData<List<Movie>> get() = _movieList
 
+
     private val _searchState = MutableLiveData<StateView<Unit>>()
     val searchState: LiveData<StateView<Unit>> get() = _searchState
+    */
 
+    fun searchMovies(query: String?): Flow<PagingData<Movie>> {
+        return searchMovieUseCase(
+            query = query
+        ).cachedIn(viewModelScope)
+    }
+
+    /* Desnecessário após o paging3
     fun searchMovies(query: String?) {
         viewModelScope.launch {
             try {
@@ -46,6 +59,6 @@ class SearchViewModel @Inject constructor(
                 _searchState.postValue(StateView.Error(message = e.message))
             }
         }
-    }
+    }*/
 
 }

@@ -46,18 +46,49 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmer"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="8dp"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <include layout="@layout/placeholder_movie_item" />
+
+                    <include layout="@layout/placeholder_movie_item" />
+
+                    <include layout="@layout/placeholder_movie_item" />
+
+                    <include layout="@layout/placeholder_movie_item" />
+
+                </LinearLayout>
+
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_movies"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:clipToPadding="false"
                 android:padding="8dp"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:itemCount="1"
-                tools:listitem="@layout/movie_item" />
-
+                tools:listitem="@layout/movie_genre_item" />
+            <!--
             <ProgressBar
                 android:id="@+id/progress_bar"
                 android:layout_width="wrap_content"
@@ -68,6 +99,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:visibility="visible" />
+            -->
 
             <LinearLayout
                 android:id="@+id/layout_empty"
